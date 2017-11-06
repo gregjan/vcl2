@@ -11,8 +11,10 @@ class Header extends Component {
 		<p className="Header-nav-projectName">Project Name</p>
 		<nav className="Header-nav" align="right"> 
 			<ul className="Header-nav-ul">
-				<li className="Header-nav-li"><Link to ="/help">Help</Link></li>
+				<li className="Header-nav-li"><Link to ="/">Home</Link></li>
 				<li className="Header-nav-li"><Link to ="/about">About</Link></li>
+				<li className="Header-nav-li"><Link to ="/help">Help</Link></li>
+				<li className="Header-nav-li"><Link to ="/requestForm">Request Form</Link></li>
 				<li className="Header-nav-li"><Link to ="/logout">Logout</Link></li>
 			</ul>
 		</nav> 	
