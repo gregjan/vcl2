@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import logo from './ischool.png'
 //this is the header component which is used in App.js file
 class Header extends Component {
   render() {
     return (
-      <header className = "Header">
-		<div className="Header-logo">
-		LOGO
+		<nav className = "Header">
+	    <div className="container-fluid">
+		<div className="row">
+			<div className="col-md-3 logo ">
+				<img src={logo} alt="logo"/>
+			</div>
+			<div className = "Header-nav-li col-md-3" >
+				<p><Link to ="/">Virtual Computing Lab</Link></p>
+			</div>
+			<div className = "Header-nav col-md-6" align="right">
+				<div> 
+					<ul className="Header-nav-ul">
+					<li className="Header-nav-li"><Link to ="/">Home</Link></li>
+					<li className="Header-nav-li"><Link to ="http://dcicblog.umd.edu/curatecloud/2016/03/09/curatecloud/" target="_blank">About</Link></li>
+					<li className="Header-nav-li"><Link to ="http://dcic.umd.edu/vcl-tutorial/" target="_blank">Help</Link></li>
+					<li className="Header-nav-li"><Link to ="https://docs.google.com/forms/d/e/1FAIpQLSd3cOQHDkwX1ZkN750JUrfx39Y-2JEmyHjPRGjo6Pukd_CB9Q/viewform?c=0&w=1" target="_blank">Request Form</Link></li>
+					<li className="Header-nav-li"><Link to ="/logout">Logout</Link></li>
+					</ul>
+				</div>
+			</div>
+			</div>	
 		</div>
-		<p className="Header-nav-projectName">Project Name</p>
-		<nav className="Header-nav" align="right"> 
-			<ul className="Header-nav-ul">
-				<li className="Header-nav-li"><Link to ="/">Home</Link></li>
-				<li className="Header-nav-li"><Link to ="/about">About</Link></li>
-				<li className="Header-nav-li"><Link to ="/help">Help</Link></li>
-				<li className="Header-nav-li"><Link to ="/requestForm">Request Form</Link></li>
-				<li className="Header-nav-li"><Link to ="/logout">Logout</Link></li>
-			</ul>
-		</nav> 	
-	  </header>
+	  </nav>
     );
   }
 }
