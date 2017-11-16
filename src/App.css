@@ -141,6 +141,10 @@
 .paddingLeft10{
 	padding-Left:10px;
 }
+.paddingLeft20{
+	padding-Left:20px;
+}
+
 .paddingLeft150{
 	padding-Left:230px;
 }
@@ -161,6 +165,29 @@
 .paddingTop100{
 	padding-Top: 100px;
 }
+
+.width20Percent{
+	width:25% !important;
+}
+.width40Percent{
+	width:40% !important;
+}
+.height50Percent{
+	height:50% !important;
+}
+
+.button{
+	width:auto;
+	color:white;
+	font-size:14px;
+	display: inline;
+}
+
+.bgColor{
+	background-color:#00bcd4;
+}
+
+
 .colorBlack{
 	color:black !important;
 }
