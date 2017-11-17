@@ -5,14 +5,14 @@ import SideNav, { Nav, NavIcon, NavText } from 'react-sidenav';
 import SvgIcon from 'react-icons-kit';
 import { Button } from 'react-bootstrap';
 import { ic_aspect_ratio } from 'react-icons-kit/md/ic_aspect_ratio';
-
+//declare global variables here
+var axios = require('axios');
 var nodeServiceIP = "http://localhost:3009/";
-
+var color = {
+ color: 'white'
+};
 //this is the footer component which is used in App.js file
 class HomePage extends Component {
-	
-	
-	
 	
   render() {
 	  
@@ -37,14 +37,19 @@ class HomePage extends Component {
 			  alert('yes');
 			  
 				}
-				
-			 function selectedText(e) {
-       e.preventDefault();
-			  alert('yes');
+	  // function to get lab list		
+			 function getLabList() {
+				 
+				axios.get('http://localhost:3009/getLabList')
+					.then(function (response) {
+					console.log(response);
+						})
+					.catch(function (error) {
+					console.log(error);
+						});
+			  
 					}
-		  
-		  
-					  
+		  		  
 //this returns the sidebars and the center view			
     return (
        <body className="paddingTop40">
@@ -62,11 +67,11 @@ class HomePage extends Component {
 						<SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4' defaultSelected='labs'>       
 						<Nav id='labs' >
 							<NavIcon><SvgIcon size={20} icon={ic_aspect_ratio}/></NavIcon>    
-							<NavText><a>Labs</a></NavText>
+							<NavText><a href="#" style={color} onClick={getLabList}>Labs</a></NavText>
 						</Nav>
 						<Nav id='sandbox'>
 							<NavIcon><SvgIcon size={20} icon={ic_aspect_ratio}/></NavIcon>
-							<NavText>Sandbox</NavText>
+							<NavText><a href="#" style={color}>Sandbox</a></NavText>
 						</Nav>
 						</SideNav>
 						<div className="paddingTop10"></div>

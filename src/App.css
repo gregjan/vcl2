@@ -183,6 +183,9 @@
 	display: inline;
 }
 
+.textColor{
+color:white !important;
+}
 .bgColor{
 	background-color:#00bcd4;
 }
