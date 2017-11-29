@@ -17,14 +17,13 @@ class HomePage extends Component {
   render() {
 	  
 	  //declare constants here
-			const data = [{
-					lab: 'INST462',
-					instructor: 'Niklas Elmqvist',
-						}]
-						
-			const columns = [{
+			var labList = [];
+			alert(getLabList());
+			var data = getLabList();
+					
+			var columns = [{
 					Header: 'Lab Name',
-					accessor: 'lab' // String-based value accessors!
+					accessor: 'lab_name' // String-based value accessors!
 							}, {
 					Header: 'Instructor',
 					accessor: 'instructor',
@@ -39,17 +38,19 @@ class HomePage extends Component {
 				}
 	  // function to get lab list		
 			 function getLabList() {
-				 
+	
 				axios.get('http://localhost:3009/getLabList')
 					.then(function (response) {
-					console.log(response);
+					
+					var responseList = response.data;
+					labList = responseList["message"];
+					return labList;
 						})
 					.catch(function (error) {
 					console.log(error);
 						});
-			  
 					}
-		  		  
+				
 //this returns the sidebars and the center view			
     return (
        <body className="paddingTop40">
@@ -67,7 +68,7 @@ class HomePage extends Component {
 						<SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4' defaultSelected='labs'>       
 						<Nav id='labs' >
 							<NavIcon><SvgIcon size={20} icon={ic_aspect_ratio}/></NavIcon>    
-							<NavText><a href="#" style={color} onClick={getLabList}>Labs</a></NavText>
+							<NavText><a href="#" style={color}>Labs</a></NavText>
 						</Nav>
 						<Nav id='sandbox'>
 							<NavIcon><SvgIcon size={20} icon={ic_aspect_ratio}/></NavIcon>
@@ -76,7 +77,7 @@ class HomePage extends Component {
 						</SideNav>
 						<div className="paddingTop10"></div>
 			
-						<div align ="center"><ReactTable data={data} columns={columns}/></div>
+						<div align ="center"><ReactTable data={data} columns={columns} defaultPageSize={5} minRows={5}/></div>
 					</div>
 		
 				</div>
