@@ -14,45 +14,40 @@ var color = {
 //this is the footer component which is used in App.js file
 class HomePage extends Component {
 	
-  render() {
-	  
-	  //declare constants here
-			var labList = [];
-			alert(getLabList());
-			var data = getLabList();
-					
-			var columns = [{
-					Header: 'Lab Name',
-					accessor: 'lab_name' // String-based value accessors!
-							}, {
-					Header: 'Instructor',
-					accessor: 'instructor',
-					Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
-					  }]
-	  
-	  //declare functions here	 
-		    function handleClick(e){
-			  e.preventDefault();
-			  alert('yes');
-			  
-				}
-	  // function to get lab list		
-			 function getLabList() {
+	constructor(props) {
+		super(props);
+		this.labList = [];
+		this.data = this.getLabList();
+		this.columns = [{
+				Header: 'Lab Name', 
+				accessor: 'lab_name' // String-based value accessors!
+			}, {
+				Header: 'Instructor',
+				accessor: 'instructor',
+				Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
+			}]
+	}
 	
-				axios.get('http://localhost:3009/getLabList')
-					.then(function (response) {
-					
-					var responseList = response.data;
-					labList = responseList["message"];
-					return labList;
-						})
+	handleClick(e){
+		e.preventDefault();
+		alert('yes');
+	}
+
+	getLabList() {
+		axios.get('http://192.168.29.1:3009/getLabList')
+				 .then(function (response) {
+						var responseList = response.data;
+						this.labList = responseList["message"];
+						alert(response);
+						return this.labList;
+					})
 					.catch(function (error) {
-					console.log(error);
-						});
-					}
-				
-//this returns the sidebars and the center view			
-    return (
+						console.log(error);
+					});
+	}
+  
+	render() {
+		return (
        <body className="paddingTop40">
 		<div className="panel panel-default">
 			<div className="row">
@@ -77,7 +72,7 @@ class HomePage extends Component {
 						</SideNav>
 						<div className="paddingTop10"></div>
 			
-						<div align ="center"><ReactTable data={data} columns={columns} defaultPageSize={5} minRows={5}/></div>
+						<div align ="center"><ReactTable data={this.data} columns={this.columns} defaultPageSize={5} minRows={5}/></div>
 					</div>
 		
 				</div>
@@ -107,7 +102,7 @@ class HomePage extends Component {
 						<nav>
 						<div className="row">
 							<div className="width40Percent height50Percent" align="center">
-							<button onClick={handleClick}>Start </button>
+							<button onClick={this.handleClick}>Start </button>
 							</div>
 							<div className="width40Percent  paddingLeft10" align="left">
 							<button >Stop</button>
