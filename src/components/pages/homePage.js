@@ -3,11 +3,11 @@ import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 import SideNav, { Nav, NavIcon, NavText } from 'react-sidenav';
 import SvgIcon from 'react-icons-kit';
-import { Button } from 'react-bootstrap';
+//import { Button } from 'react-bootstrap';
 import { ic_aspect_ratio } from 'react-icons-kit/md/ic_aspect_ratio';
 //declare global variables here
 var axios = require('axios');
-var nodeServiceIP = "http://localhost:3009/";
+//var nodeServiceIP = "http://localhost:3009/";
 var color = {
  color: 'white'
 };
