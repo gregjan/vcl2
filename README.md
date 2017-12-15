@@ -1,3 +1,11 @@
+1. To run this project, install meteor.
+`$curl https://install.meteor.com/ | sh`
+2. Clone the project. 
+`$git clone https://bitbucket.org/dnapier/vcl2.git`
+3. Move into the directory.
+`$cd vcl2`
+4. Run meteor.
+`$meteor`
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
