@@ -4,6 +4,8 @@
 `$git clone https://bitbucket.org/dnapier/vcl2.git`
 3. Move into the directory.
 `$cd vcl2`
+4. Install npm modules through meteor.
+`$meteor npm install`
 4. Run meteor.
 `$meteor`
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
