@@ -63,5 +63,5 @@ App.propTypes = {
 	/* loading: React.PropTypes.bool, 		// subscription status
 	 * menuOpen: React.PropTypes.bool, 		// checks side menu open status
 	 * lists: React.PropTypes.array, 			// all listsl visible to current user
-	 * children: React.PropTypes.element, // matched child route component
+	 * children: React.PropTypes.element, // matched child route component */
 }

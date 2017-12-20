@@ -1,0 +1,14 @@
+{
+  "cas": {
+	"baseUrl": "https://login.umd.edu/cas/",
+ 	"autoClose": true
+  },
+  "public": {
+  	"cas": {
+  		"loginUrl": "https://login.umd.edu/cas/login",
+  		"serviceParam": "service",
+  		"popupWidth": 810,
+  		"popupHeight": 610
+  	}
+  }
+}
