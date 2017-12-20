@@ -1,15 +1,23 @@
 import React from 'react';
-import { FlowRouter } from 'meteor/kadira:flow-router';
-import { mount } from 'react-mounter';
+import { Router, Route, browserHistory } from 'react-router';
+import i18n from 'meteor/universe:i18n';
 
+// route components
+import AppContainer from '../../ui/containers/AppContainer.jsx';
 import '../../ui/layouts/vcl-body.js';
 import '../../ui/pages/home/home.js';
 //TODO: import '../../ui/pages/not-found/not-found.js';
 
-const WelcomeComponent = ({name}) => (<p>Hello, {name}</p>);
+i18n.setLocale('en'); // For internationalization.
 
-// Set up all routes in the app
-FlowRouter.route('/', {
+export const renderRoutes = () => (
+	<Router history={browserHistory}>
+		<Route path="/" component={AppContainer}>
+		</Route>
+	</Router>
+);
+/*
+	FlowRouter.route('/', {
 	name: 'VCL.home',
 	action() {
 		const MainLayout = ({content}) => (
@@ -30,4 +38,4 @@ FlowRouter.notFound = {
 	action () {
 		//TODO: notFound view
 	},
-};
+}; */
