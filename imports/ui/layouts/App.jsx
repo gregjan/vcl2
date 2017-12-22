@@ -23,15 +23,23 @@ export default class App extends React.Component {
 		 * 	menuOpen: false,
 		 * 	showConnectionIssue: false,
 		 * }; */
-		//this.toggleMenu = this.toggleMenu.bind(this);
+		this.toggleMenu = this.toggleMenu.bind(this);
 		this.logout = this.logout.bind(this);
 	}
 
-	/* functions to write:
-	 * componentDidMount()
-	 * componentWillReceiveProps({ loading, children })
-	 * toggleMenu(menuOpen = !Session.get('menuOpen'))
-	 */
+	componentDidMount() {
+		setTimeout(() => {
+			this.setState({ showConnectionIssue: true });
+		}, CONNECTION_ISSUE_TIMEOUT);
+	}
+
+	componentWillReceiveProps(/*{ loading, children }*/) {
+		/*if (!loading && !children) {
+
+		}*/
+	}
+
+	// toggleMenu(menuOpen = !Session.get('menuOpen'))
 
 	logout() {
 		Meteor.logout();
@@ -40,11 +48,10 @@ export default class App extends React.Component {
 	}
 
 	render() {
-	// For debugging:	const { showConnectionIssue } = this.state;
+		const { showConnectionIssue } = this.state;
 		const {
 			user,
 			connected,
-
 		} = this.props;
 
 		return (
@@ -62,6 +69,10 @@ App.propTypes = {
 	connected: React.PropTypes.bool,			// server connection status
 	/* loading: React.PropTypes.bool, 		// subscription status
 	 * menuOpen: React.PropTypes.bool, 		// checks side menu open status
-	 * lists: React.PropTypes.array, 			// all listsl visible to current user
+	 * lists: React.PropTypes.array, 			// all lists visible to current user
 	 * children: React.PropTypes.element, // matched child route component */
-}
+};
+
+App.contextTypes = {
+	router: React.PropTypes.object,
+};

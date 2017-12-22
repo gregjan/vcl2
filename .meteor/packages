@@ -23,3 +23,5 @@ universe:i18n
 session
 react-meteor-data
 atoy40:accounts-cas
+accounts-ui
+accounts-password
