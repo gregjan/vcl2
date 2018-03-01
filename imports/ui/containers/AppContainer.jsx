@@ -10,9 +10,9 @@ export default withTracker(() => {
   //const publicHandle = Meteor.subscribe('lists.public');
   //const privateHandle = Meteor.subscribe('lists.private');
   return {
-    user: Meteor.user(),
+    //user: Meteor.user(),
     //loading: !(publicHandle.ready() && privateHandle.ready()),
-    connected: Meteor.status().connected,
+    //connected: Meteor.status().connected,
     //menuOpen: Session.get('menuOpen'), Depends on App.jsx
     /*lists: Lists.find({ $or: [
       { userId: { $exists: false } },
