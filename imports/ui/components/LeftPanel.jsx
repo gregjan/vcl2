@@ -1,13 +1,26 @@
 import React, { Component } from 'react';
 
+import SideNav, { Nav } from 'react-sidenav';
+import { TableHeaderColumn } from 'react-bootstrap-table';
+
 // Internally developed.
 import BaseComponent from './BaseComponent.jsx';
-import LeftNav from './LeftNav.jsx';
+import BorderNav from './BorderNav.jsx';
 import BootTable from './BootTable.jsx';
 
 export default class LeftPanel extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      data: [],
+      manageLabList: (props) => {
+        axios.get('http://localhost:443/getManageLabList')
+          .then((response) => {
+            alert(JSON.stringify(response));
+          })
+      },
+    }
   }
 
   render() {
@@ -16,7 +29,10 @@ export default class LeftPanel extends Component {
   <div className="row">
     <div className="col-md-3">
       <div className="Body_left_div">
-        <LeftNav />
+        <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4' defaultSelected='labs'>
+          <BorderNav navId='labs' navText='Labs' />
+          <BorderNav navId='sandbox' natText='Sandbox' />
+        </SideNav>
         <div className="paddingTop10"></div>
         <BootTable />
       </div>
@@ -25,31 +41,20 @@ export default class LeftPanel extends Component {
   <div className="col-md-3">
     <div className="Body_right_div">
       <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4' defaultSelected='labMachines'>
-        <Nav id='labMachines'>
-          <NavIcon><SvgIcon size={20} icon={ic_aspect_ratio}/></NavIcon>
-          <NavText><a href="#" style={color} onClick={this.manageLabList}>Manage Lab Machines</a></NavText>
-        </Nav>
+        <BorderNav navId='labMachines' navText='Labs' />
         <div>
-          <BootstrapTable data={this.state.ManageLabList} striped hover selectRow={ selectManageMachine } options={options}>
-            <TableHeaderColumn isKey dataField="lab_name">Lab Name</TableHeaderColumn>
-            <TableHeaderColumn dataField="instructor">Instructor</TableHeaderColumn>
-          </BootstrapTable>
+          <BootTable />
         </div>
         <div className="paddingTop10"></div>
-        <Nav id='machine_1'>
-          <NavIcon><SvgIcon size={20} icon={ic_aspect_ratio}/></NavIcon>
-          <NavText>Machine Information:</NavText>
-        </Nav>
+        <BorderNav navId='machine_1' navText='Manage Lab Machines' />
       </SideNav>
       <div>
         <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4' defaultSelected='startStopButton'>
-          <Nav id='machineInformation'>
-            <NavText>Windows server 2016, NodeXL Basics, Google Chrome</NavText>
-          </Nav>
+          <BorderNav navId='machineInformation' navText='Windows server 2016, NodeXL Basics, Google Chrome' />
           <Nav>
             <div className="row">
               <div className="width40Percent height50Percent" align="center">
-                <button onClick={handleClick}>Start </button>
+                <button onClick={function(){}}>Start</button>
               </div>
               <div className="width40Percent paddingLeft10" align="left">
                 <button>Stop</button>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BaseComponent from './BaseComponent.jsx';
 
-export default class Nav extends Component {
+export default class TopNav extends Component {
   constructor(props) {
     super(props);
   }
