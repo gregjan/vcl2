@@ -24,5 +24,6 @@ session@1.1.7
 react-meteor-data
 atoy40:accounts-cas
 accounts-ui
-accounts-password@1.5.0
+accounts-password
+less
 random
