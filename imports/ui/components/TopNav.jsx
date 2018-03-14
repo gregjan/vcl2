@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BaseComponent from './BaseComponent.jsx';
+//import BaseComponent from './BaseComponent.jsx';
 
 export default class TopNav extends Component {
   constructor(props) {
