@@ -4,6 +4,12 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/meteor';
 
+
+
+import '../../../client/main.less'; //import css files here
+
+
+
 //For API calls to MongoDB
 //import { Lists } from '../../api/lists/lists.js';
 
