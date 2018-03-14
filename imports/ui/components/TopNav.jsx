@@ -22,7 +22,7 @@ export default class TopNav extends Component {
               Machine Name:
             </div>
             <div className="col-md-3 paddingLeft10" align="left"></div>
-            <div className="col-md-3">
+            <div className="col-md-5">
               <button>Full Screen</button>
             </div>
             <div className="col-md-1">
