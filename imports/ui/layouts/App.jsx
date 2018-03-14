@@ -16,6 +16,7 @@ import '../../../client/main.less'; //import css files here
 //import ComponentName from '../components/component.jsx';
 import TopNav from '../components/TopNav.jsx';
 import LeftPanel from '../components/LeftPanel.jsx';
+import HeadNav from '../components/HeadNav.jsx'
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
 
@@ -40,6 +41,7 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<div className="container-fluid">
+				<HeadNav />
 				<TopNav />
 				<LeftPanel />
 			</div>
