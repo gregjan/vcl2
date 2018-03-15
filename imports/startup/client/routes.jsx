@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-// import i18n from 'meteor/universe:i18n';
+// TODO: import i18n from 'meteor/universe:i18n'; (for internationalization)
 
 // route components
 import AppContainer from '../../ui/containers/AppContainer.jsx';

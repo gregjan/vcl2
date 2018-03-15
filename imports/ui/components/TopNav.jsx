@@ -6,6 +6,7 @@ export default class TopNav extends Component {
   constructor(props) {
     super(props);
 
+    //clearly the name stuff needs to be changed
     this.stuff = this.stuff.bind(this);
   }
 
