@@ -56,13 +56,13 @@ export default class App extends React.Component {
 		} = this.props;
 
 		const closeMenu = this.toggleMenu.bind(this, false);
+			/* <div className={menuOpen ? 'menu-open' : ''} /> */
 
 		return (
-		<div className="container-fluid">
-			<HeadNav />
-			//<div className={menuOpen ? 'menu-open' : ''} />
-			<TopNav />
-			<LeftPanel />
+		<div>
+				<HeadNav />
+				<TopNav />
+				<LeftPanel />
 		</div>
 		);
 	}

@@ -5,13 +5,14 @@
     "start": "meteor run"
   },
   "dependencies": {
-    "@babel/runtime": "^7.0.0-beta.41",
+    "@babel/runtime": "^7.0.0-beta.42",
     "babel-runtime": "^6.26.0",
     "bcrypt": "^1.0.3",
     "core-js": "^2.5.3",
     "eslint-config-react-tools": "^1.0.10",
     "meteor-node-stubs": "~0.2.4",
     "normalize.css": "^8.0.0",
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-bootstrap-sidebar": "0.0.1",
     "react-bootstrap-table": "^4.3.1",

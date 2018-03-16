@@ -13,8 +13,20 @@ export default class HeadNav extends Component {
 
 render() {
 	return(
-		<nav className="Header">
-			<div className="container-fluid">
+    <div>
+      <nav className="navbar navbar-default">
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+            </button>
+            <a className="navbar-brand" href="#">Brand</a>
+          </div>
+        </div>
+      </nav>
+      <div className="Header">
 				<div className="row">
 					<div className="col-md-3 logo">
 						<img src="img/ischool.png" alt="logo"/>
@@ -34,8 +46,8 @@ render() {
 						</div>
 					</div>
 				</div>
-			</div>
-		</nav>
-	);
+      </div>
+    </div>
+  	);
 	}
 }
