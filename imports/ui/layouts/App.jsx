@@ -10,7 +10,7 @@ import { Session } from 'meteor/session';
 //import ComponentName from '../components/component.jsx';
 import TopNav from '../components/TopNav.jsx';
 import LeftPanel from '../components/LeftPanel.jsx';
-import HeadNav from '../components/HeadNav.jsx'
+import Menu from '../components/Menu.jsx'
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
 
@@ -60,7 +60,7 @@ export default class App extends React.Component {
 
 		return (
 		<div>
-				<HeadNav />
+				<Menu />
 				<TopNav />
 				<LeftPanel />
 		</div>
