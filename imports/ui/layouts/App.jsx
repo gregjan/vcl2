@@ -8,7 +8,7 @@ import { Session } from 'meteor/session';
 //import { Lists } from '../../api/lists/lists.js';
 
 //import ComponentName from '../components/component.jsx';
-import TopNav from '../components/TopNav.jsx';
+//import TopNav from '../components/TopNav.jsx';
 import LeftPanel from '../components/LeftPanel.jsx';
 import Menu from '../components/Menu.jsx'
 
@@ -57,11 +57,11 @@ export default class App extends React.Component {
 
 		const closeMenu = this.toggleMenu.bind(this, false);
 			/* <div className={menuOpen ? 'menu-open' : ''} /> */
+			//<TopNav />
 
 		return (
-		<div>
-				<Menu />
-				<TopNav />
+		<div id="container">
+				<Menu user={user} />
 				<LeftPanel />
 		</div>
 		);

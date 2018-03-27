@@ -6,11 +6,10 @@ export default class TopNav extends Component {
   constructor(props) {
     super(props);
 
-    //clearly the name stuff needs to be changed
-    this.stuff = this.stuff.bind(this);
+    this.login = this.login.bind(this);
   }
 
-  stuff(){
+  login(){
     Meteor.loginWithCas(function(){});
   }
 
@@ -27,7 +26,7 @@ export default class TopNav extends Component {
               <button>Full Screen</button>
             </div>
             <div className="col-md-1">
-              <button onClick={this.stuff}>Login</button>
+              <button onClick={this.login}>Login</button>
             </div>
           </div>
         </div>
