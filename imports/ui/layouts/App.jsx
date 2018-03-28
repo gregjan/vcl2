@@ -1,14 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types'; //Possibly use Typescript for this?
-//For component loading transitions: import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
+
+import PropTypes from 'prop-types'; //Possibly use Typescript for this?
 
 //For API calls to MongoDB
 //import { Lists } from '../../api/lists/lists.js';
 
-//import ComponentName from '../components/component.jsx';
-//import TopNav from '../components/TopNav.jsx';
 import LeftPanel from '../components/LeftPanel.jsx';
 import Menu from '../components/Menu.jsx'
 
@@ -32,7 +31,7 @@ export default class App extends React.Component {
 		}, CONNECTION_ISSUE_TIMEOUT);
 	}
 
-	componentWillReceiveProps() {
+	componentWillReceiveProps({ children }) {
 		// TODO: const list = List of parsed return from aws_sdk.
 	}
 
@@ -42,7 +41,6 @@ export default class App extends React.Component {
 
 	logout() {
 		Meteor.logout();
-
 		// remove private lists, Rerender lists to be empty. Rerender Nav (with correct button text)
 	}
 
@@ -51,18 +49,32 @@ export default class App extends React.Component {
 		const {
 			user,
 			connected,
-			//loading,
 			menuOpen,
+			children,
+			location,
 		} = this.props;
 
 		const closeMenu = this.toggleMenu.bind(this, false);
-			/* <div className={menuOpen ? 'menu-open' : ''} /> */
-			//<TopNav />
+		const clonedChildren = children && React.cloneElement(children, {
+			key: location.pathname,
+		});
 
 		return (
-		<div id="container">
-				<Menu user={user} />
+		<div id="container" className={menuOpen ? 'menu-open' : ''}>
+			<section id="menu">
+				<Menu user={user} logout={this.logout} />
 				<LeftPanel />
+			</section>
+			<div className="content-overlay" onClick={closeMenu} />
+			<div id="content-container">
+				<ReactCSSTransitionGroup
+					transitionName="fade"
+					transitionEnterTimeout={200}
+					transitionLeaveTimeout={200}
+				>
+					{clonedChildren}
+				</ReactCSSTransitionGroup>
+			</div>
 		</div>
 		);
 	}
@@ -71,10 +83,8 @@ export default class App extends React.Component {
 App.propTypes = {
 	user: PropTypes.object,					// current meteor user
 	connected: PropTypes.bool,			// server connection status
-//	  loading: React.PropTypes.bool, 			// subscription status
-	menuOpen: PropTypes.bool, 		// checks side menu open status
-	//  lists: React.PropTypes.array, 			// all lists visible to current user
-	 // children: React.PropTypes.element,  // matched child route component
+	menuOpen: PropTypes.bool, 		  // checks side menu open status
+	children: PropTypes.element,    // matched child route component
 };
 
 App.contextTypes = {

@@ -21,14 +21,12 @@ export default class Menu extends Component {
     const { user, logout } = this.props;
 
     return(
-      <a href="#toggle" className="" onClick={this.toggle}>Logout</a>
+      <a onClick={logout}>Logout</a>
     );
   }
 
   renderLoggedOut() {
-        //<a href="#">Login</a>
 
-        //<Link to="/signin"></Link>
     return (
       <Link to="/signin">Login</Link>
     )

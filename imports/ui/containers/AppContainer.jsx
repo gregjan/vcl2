@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import { Session } from 'meteor/session';
 // withTracker is used for React components acccessing Collections.
+import { Session } from 'meteor/session';
 import { withTracker } from 'meteor/react-meteor-data';
 
 //import { Lists } form '../../api/lists/lists.js';
