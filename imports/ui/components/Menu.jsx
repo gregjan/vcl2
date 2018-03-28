@@ -30,8 +30,8 @@ export default class Menu extends Component {
 
         //<Link to="/signin"></Link>
     return (
-      <div>
-      </div>)
+      <Link to="/signin">Login</Link>
+    )
   }
 
   render() {
