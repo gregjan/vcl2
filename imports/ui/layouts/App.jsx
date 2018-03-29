@@ -41,7 +41,7 @@ export default class App extends React.Component {
 
 	logout() {
 		Meteor.logout();
-		// remove private lists, Rerender lists to be empty. Rerender Nav (with correct button text)
+		// remove private lists, Rerender lists to be empty.
 	}
 
 	render() {
@@ -55,9 +55,9 @@ export default class App extends React.Component {
 		} = this.props;
 
 		const closeMenu = this.toggleMenu.bind(this, false);
-		const clonedChildren = children && React.cloneElement(children, {
+		/*const clonedChildren = children && React.cloneElement(children, {
 			key: location.pathname,
-		});
+		});*/
 
 		return (
 		<div id="container" className={menuOpen ? 'menu-open' : ''}>
@@ -72,7 +72,8 @@ export default class App extends React.Component {
 					transitionEnterTimeout={200}
 					transitionLeaveTimeout={200}
 				>
-					{clonedChildren}
+					{console.log(this.props)}
+
 				</ReactCSSTransitionGroup>
 			</div>
 		</div>
