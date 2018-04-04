@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import AddMachine from '../components/AddEvent'
+
+import { withTracker } from 'meteor/react-meteor-data';
+import { Events } from '../../api/events.js';
+
+function handleClick(e){
+        e.preventDefault();
+        }
 
 export default class Menu extends Component {
   constructor(props) {
     super(props);
     this.state = { open: false };//Object.assign(this.state, { open: false });
     this.toggle = this.toggle.bind(this);
+    
+    this.state = {
+      showComponent: false,
+    };
+    this.RenderAdminPage=this.RenderAdminPage.bind(this);
   }
 
   toggle(e) {
@@ -34,6 +47,13 @@ export default class Menu extends Component {
     )
   }
 
+  RenderAdminPage() {
+    this.setState({
+      showComponent: !this.state.showComponent,
+    });
+  }
+
+
   render() {
     return (
       <div>
@@ -51,6 +71,11 @@ export default class Menu extends Component {
               <li>{this.props.user ?
                     this.renderLoggedIn() :
                     this.renderLoggedOut()}</li>
+              <li><a href="#" onClick={this.RenderAdminPage}>Admin</a></li>
+                  {this.state.showComponent ?
+                    <AddMachine /> :
+                     null
+                   }
             </ul>
           </div>
         </nav>
@@ -58,6 +83,12 @@ export default class Menu extends Component {
     )
   }
 }
+
+const MenuComponent = withTracker(() => {
+  return {
+    events: Events.find({}). fetch()
+  }
+})(Menu);
 
 Menu.propTypes = {
   user: PropTypes.object,

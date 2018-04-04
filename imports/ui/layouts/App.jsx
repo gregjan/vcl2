@@ -4,13 +4,14 @@ import PropTypes from 'prop-types'; //Possibly use Typescript for this?
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 
-//For API calls to MongoDB
-//import { Lists } from '../../api/lists/lists.js';
-
 //import ComponentName from '../components/component.jsx';
 //import TopNav from '../components/TopNav.jsx';
 import LeftPanel from '../components/LeftPanel.jsx';
 import Menu from '../components/Menu.jsx'
+import AddEvent from '../components/AddEvent.jsx'
+//For API calls to MongoDB
+import { Events } from '../../api/events.js';
+
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
 
