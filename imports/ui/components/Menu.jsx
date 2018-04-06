@@ -19,6 +19,7 @@ export default class Menu extends Component {
     this.state = {
       showComponent: false,
     };
+
     this.RenderAdminPage=this.RenderAdminPage.bind(this);
   }
 

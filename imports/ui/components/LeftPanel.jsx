@@ -31,7 +31,7 @@ export default class LeftPanel extends Component {
       <div className="Body_left_div">
         <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4' defaultSelected='labs'>
           <BorderNav navId='labs' navText='Labs' />
-          <BorderNav navId='sandbox' natText='Sandbox' />
+          <BorderNav navId='sandbox' navText='Sandbox' />
         </SideNav>
         <div className="paddingTop10"></div>
         <BootTable />

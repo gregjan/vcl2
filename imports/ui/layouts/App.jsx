@@ -8,7 +8,6 @@ import { Session } from 'meteor/session';
 //import TopNav from '../components/TopNav.jsx';
 import LeftPanel from '../components/LeftPanel.jsx';
 import Menu from '../components/Menu.jsx'
-import AddEvent from '../components/AddEvent.jsx'
 //For API calls to MongoDB
 import { Events } from '../../api/events.js';
 

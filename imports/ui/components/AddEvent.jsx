@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {FormControl} from 'react-bootstrap';
 class AddMachine extends Component {
   constructor(props) {
     super(props);
@@ -7,7 +7,7 @@ class AddMachine extends Component {
     this.state = {
       title: "",
       description: "",
-      date: ""
+      instructor: ""
     }
   }
 
@@ -21,25 +21,28 @@ handleChange(event){
   }
 
   handleSubmit(event){
+    window.location.reload(); 
     event.preventDefault();
 
     // TODO: Create backend Meteor methods to save created events
     alert("Will be Saved in a little bit :)")
-    const { title, description, date } = this.state;
+    const { title, description, instructor } = this.state;
 
     // add method `insert` to db
      Events.insert({
         title,
         description,
-        date
+        instructor
       });
 
      // clears input fields onSubmit
      this.setState({
         title: "",
         description: "",
-        date: ""
+        instructor: "" 
       })
+     //this.setState({redirect: true }));
+    //return <Redirect to='http://localhost:3000/'  />
   }
 
   render() {
@@ -55,37 +58,34 @@ handleChange(event){
 
             <div className="form-group">
               <label>Machine Name:</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter Machine Name"
-                name="title"
-                value={this.state.title}
-                onChange={this.handleChange}
+              <FormControl
+               type="text"
+               placeholder="Enter Machine Name"
+               name="title"
+               value={this.state.title}
+               onChange={this.handleChange}
               />
             </div>
 
             <div className="form-group">
               <label>Description:</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter Machine Description"
-                name="description"
-                value={this.state.description}
-                onChange={this.handleChange}
+              <FormControl
+               type="text"
+               placeholder="Enter Machine Description"
+               name="description"
+               value={this.state.description}
+               onChange={this.handleChange}
               />
             </div>
 
             <div className="form-group">
               <label>Instructor:</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter Instructor Name"
-                name="date"
-                value={this.state.date}
-                onChange={this.handleChange}
+               <FormControl
+               type="text"
+               placeholder="Enter Instructor Name"
+               name="instructor"
+               value={this.state.instructor}
+               onChange={this.handleChange}
               />
             </div>
 
