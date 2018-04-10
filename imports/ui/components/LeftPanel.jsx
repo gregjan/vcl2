@@ -7,13 +7,17 @@ import { TableHeaderColumn } from 'react-bootstrap-table';
 import BaseComponent from './BaseComponent.jsx';
 import BorderNav from './BorderNav.jsx';
 import BootTable from './BootTable.jsx';
+import StartMachine from './StartMachine.jsx'
 
 export default class LeftPanel extends Component {
   constructor(props) {
     super(props);
     //this.getLabList= this.getLabList.bind(this);
-    this.state = {showComponent: false,};
+    this.state = {labListTable: false, sandboxListTable: false, CreatedlabListTable: false, startMachine: false,};
     this.RenderLabList=this.RenderLabList.bind(this);
+    this.RenderSandboxList=this.RenderSandboxList.bind(this);
+    this.RenderCreatedLabs=this.RenderCreatedLabs.bind(this);
+    this.RenderStartMachine=this.RenderStartMachine.bind(this);
     this.state = {
       data: [],
       manageLabList: (props) => {
@@ -26,12 +30,26 @@ export default class LeftPanel extends Component {
   }
 
   RenderLabList(){
-    alert("inside getLabList function....");
     this.setState({
-      showComponent: !this.state.showComponent,
+      labListTable: !this.state.labListTable,
     }); 
   }
-  
+  RenderSandboxList(){
+    this.setState({
+      sandboxListTable: !this.state.sandboxListTable,
+    }); 
+  }
+  RenderCreatedLabs(){
+    this.setState({
+      CreatedlabListTable: !this.state.CreatedlabListTable,
+    }); 
+  }
+  RenderStartMachine(){
+    this.setState({
+      startMachine: !this.state.startMachine,
+    }); 
+  }
+
 
   render() {
     return(
@@ -39,44 +57,36 @@ export default class LeftPanel extends Component {
   <div className="row">
     <div className="col-md-3">
       <div className="Body_left_div">
-        <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4' defaultSelected='labs'>
+        <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4'>
           <BorderNav navId='labs' navText='Labs' funcTion= {this.RenderLabList} />
-            {this.state.showComponent ?
+            {this.state.labListTable ?
               <BootTable data={this.data}/> :
                 null
             }
           <BorderNav navId='sandbox' navText='Sandbox' funcTion= {this.RenderSandboxList}/>
+          {this.state.sandboxListTable ?
+              <BootTable data={this.data}/> :
+                null
+            }
         </SideNav>
-        {/*<div className="paddingTop10"></div>
-        <BootTable data={this.data}/>*/}
       </div>
     </div>
   <div className="col-md-6 paddingLeft10"></div>
   <div className="col-md-3">
     <div className="Body_right_div">
-      <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4' defaultSelected='labMachines'>
-        <BorderNav navId='labMachines' navText='Labs' />
-        <div>
-          <BootTable />
-        </div>
+      <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4'>
+        <BorderNav navId='labMachines' navText='User Labs' funcTion= {this.RenderCreatedLabs} />
+          {this.state.CreatedlabListTable ?
+            <BootTable data={this.data}/> :
+              null
+          }
         <div className="paddingTop10"></div>
-        <BorderNav navId='machine_1' navText='Manage Lab Machines' />
+        <BorderNav navId='machine_1' navText='Manage Lab Machines' funcTion= {this.RenderStartMachine}/>
+          {this.state.startMachine ?
+            <StartMachine/> :
+              null
+          }
       </SideNav>
-      <div>
-        <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4' defaultSelected='startStopButton'>
-          <BorderNav navId='machineInformation' navText='Windows server 2016, NodeXL Basics, Google Chrome' />
-          <Nav>
-            <div className="row">
-              <div className="width40Percent height50Percent" align="center">
-                <button onClick={function(){}}>Start</button>
-              </div>
-              <div className="width40Percent paddingLeft10" align="left">
-                <button>Stop</button>
-              </div>
-            </div>
-          </Nav>
-        </SideNav>
-      </div>
     </div>
   </div>
 </div>
