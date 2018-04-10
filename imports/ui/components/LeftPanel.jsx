@@ -11,7 +11,9 @@ import BootTable from './BootTable.jsx';
 export default class LeftPanel extends Component {
   constructor(props) {
     super(props);
-
+    //this.getLabList= this.getLabList.bind(this);
+    this.state = {showComponent: false,};
+    this.RenderLabList=this.RenderLabList.bind(this);
     this.state = {
       data: [],
       manageLabList: (props) => {
@@ -19,9 +21,17 @@ export default class LeftPanel extends Component {
           .then((response) => {
             alert(JSON.stringify(response));
           })
-      },
+      }
     }
   }
+
+  RenderLabList(){
+    alert("inside getLabList function....");
+    this.setState({
+      showComponent: !this.state.showComponent,
+    }); 
+  }
+  
 
   render() {
     return(
@@ -30,11 +40,15 @@ export default class LeftPanel extends Component {
     <div className="col-md-3">
       <div className="Body_left_div">
         <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4' defaultSelected='labs'>
-          <BorderNav navId='labs' navText='Labs' />
-          <BorderNav navId='sandbox' navText='Sandbox' />
+          <BorderNav navId='labs' navText='Labs' funcTion= {this.RenderLabList} />
+            {this.state.showComponent ?
+              <BootTable data={this.data}/> :
+                null
+            }
+          <BorderNav navId='sandbox' navText='Sandbox' funcTion= {this.RenderSandboxList}/>
         </SideNav>
-        <div className="paddingTop10"></div>
-        <BootTable />
+        {/*<div className="paddingTop10"></div>
+        <BootTable data={this.data}/>*/}
       </div>
     </div>
   <div className="col-md-6 paddingLeft10"></div>
