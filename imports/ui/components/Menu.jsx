@@ -18,7 +18,7 @@ export default class Menu extends Component {
     
     this.state = {
       showComponent: false,
-    };
+      };
 
     this.RenderAdminPage=this.RenderAdminPage.bind(this);
   }
@@ -80,6 +80,7 @@ export default class Menu extends Component {
             </ul>
           </div>
         </nav>
+        <pre>DB Stuff: {JSON.stringify(this.props, null, ' ')} </pre>
       </div>
     )
   }
