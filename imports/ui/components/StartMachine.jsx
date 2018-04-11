@@ -29,16 +29,10 @@ export default class StartMachine extends Component {
               <NavText>Windows server 2016, NodeXL Basics, Google Chrome</NavText>
             </Nav>
             <nav>
-            <button className="btn btn-primary">Start</button>
-            <button className="btn btn-primary">Stop</button>
-              {/*<div className="row">
-                <div className="width40Percent height50Percent" align="center">
-                  <button onClick={handleClick}>Start </button>
-                </div>
-                <div className="width40Percent  paddingLeft10" align="left">
-                  <button >Stop</button>
-                </div>
-              </div>*/}
+              <div className="row">
+                <div className="col-md-6 previous text-right paddingLeft20 "><button className="btn btn-primary">Start</button></div> 
+                <div className="col-md-6 next text-left"><button className="btn btn-primary">Stop</button></div>
+              </div>  
             </nav>
         </SideNav>
     )

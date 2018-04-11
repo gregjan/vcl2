@@ -71,7 +71,7 @@ export default class LeftPanel extends Component {
         </SideNav>
       </div>
     </div>
-  <div className="col-md-6 paddingLeft10"></div>
+  <div className="col-md-6"></div>
   <div className="col-md-3">
     <div className="Body_right_div">
       <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4'>
