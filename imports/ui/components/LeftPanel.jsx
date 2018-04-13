@@ -7,6 +7,7 @@ import { TableHeaderColumn } from 'react-bootstrap-table';
 import BaseComponent from './BaseComponent.jsx';
 import BorderNav from './BorderNav.jsx';
 import BootTable from './BootTable.jsx';
+import Main from './Main.jsx';
 
 export default class LeftPanel extends Component {
   constructor(props) {
@@ -31,13 +32,15 @@ export default class LeftPanel extends Component {
       <div className="Body_left_div">
         <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4' defaultSelected='labs'>
           <BorderNav navId='labs' navText='Labs' />
-          <BorderNav navId='sandbox' natText='Sandbox' />
+          <BorderNav navId='sandbox' navText='Sandbox' />
         </SideNav>
         <div className="paddingTop10"></div>
         <BootTable />
       </div>
     </div>
-  <div className="col-md-6 paddingLeft10"></div>
+  <div className="col-md-6 paddingLeft10">
+    <Main />
+  </div>
   <div className="col-md-3">
     <div className="Body_right_div">
       <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4' defaultSelected='labMachines'>

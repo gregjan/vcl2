@@ -71,10 +71,7 @@ export default class App extends React.Component {
 					transitionName="fade"
 					transitionEnterTimeout={200}
 					transitionLeaveTimeout={200}
-				>
-					{console.log(this.props)}
-
-				</ReactCSSTransitionGroup>
+				></ReactCSSTransitionGroup>
 			</div>
 		</div>
 		);
