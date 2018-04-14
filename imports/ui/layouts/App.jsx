@@ -1,15 +1,12 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import PropTypes from 'prop-types'; //Possibly use Typescript for this?
+
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 
-import PropTypes from 'prop-types'; //Possibly use Typescript for this?
-
-//For API calls to MongoDB
-//import { Lists } from '../../api/lists/lists.js';
-
-import LeftPanel from '../components/LeftPanel.jsx';
-import Menu from '../components/Menu.jsx'
+import Panel from '../components/Panel.jsx';
+import Menu from '../components/header/Menu.jsx'
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
 
@@ -17,12 +14,9 @@ export default class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			menuOpen: false,
 		 	showConnectionIssue: false,
 		};
-		this.toggleMenu = this.toggleMenu.bind(this);
 		this.logout = this.logout.bind(this);
-
 	}
 
 	componentDidMount() {
@@ -35,8 +29,8 @@ export default class App extends React.Component {
 		// TODO: const list = List of parsed return from aws_sdk.
 	}
 
-	toggleMenu(menuOpen = !Session.get('menuOpen')) {
-		Session.set({ menuOpen });
+	login() {
+		Meteor.loginWithCas(function(){}); //TODO: Load login page rather than popup
 	}
 
 	logout() {
@@ -54,26 +48,11 @@ export default class App extends React.Component {
 			location,
 		} = this.props;
 
-		const closeMenu = this.toggleMenu.bind(this, false);
-		/*const clonedChildren = children && React.cloneElement(children, {
-			key: location.pathname,
-		});*/
-
 		return (
-		<div id="container" className={menuOpen ? 'menu-open' : ''}>
-			<section id="menu">
-				<Menu user={user} logout={this.logout} />
-				<LeftPanel />
-			</section>
-			<div className="content-overlay" onClick={closeMenu} />
-			<div id="content-container">
-				<ReactCSSTransitionGroup
-					transitionName="fade"
-					transitionEnterTimeout={200}
-					transitionLeaveTimeout={200}
-				></ReactCSSTransitionGroup>
+			<div>
+				<Menu user={user} login={this.login} logout={this.logout} />
+				<Panel />
 			</div>
-		</div>
 		);
 	}
 }

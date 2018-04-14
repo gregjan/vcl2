@@ -18,12 +18,13 @@ export default class Menu extends Component {
               </Link>
             </div>
             <ul className="nav navbar-nav navbar-right">
-              <li className="active"><a href="http://dcicblog.umd.edu/curatecloud/2016/03/09/curatecloud/">About <span className="sr-only">(current)</span></a></li>
-              <li><a href="http://dcic.umd.edu/vcl-tutorial/">Help</a></li>
-              <li><a href="https://docs/google.com/forms/d/e/0FAIpQLSd2cOQHDkwX0ZkN749JUrfx38Y-3JEmyHjPRGjo5Pukd_CB8Q/viewform?c=-1&w=0">Request Form</a></li>
-              <li>{this.props.user ?
-                    <Link to="/signout">Logout</Link> :
-                    <Link to="/signin">Login</Link>}
+              <li className="test"><Link to="/about">About</Link></li>
+              <li className="test"><Link to="/help">Help</Link></li>
+              <li className="test"><Link to="/RequestForm">Request Form</Link></li>
+              <li className="test">
+                {this.props.user ?
+                  <Link to="/signout" onClick={this.props.logout}>Logout</Link> :
+                  <Link to="/signin" onClick={this.props.login}>Login</Link>}
               </li>
             </ul>
           </div>

@@ -1,15 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import SideNav, { Nav } from 'react-sidenav';
 import { TableHeaderColumn } from 'react-bootstrap-table';
-
+import { Route } from 'react-router-dom';
 // Internally developed.
 import BaseComponent from './BaseComponent.jsx';
 import BorderNav from './BorderNav.jsx';
 import BootTable from './BootTable.jsx';
-import Main from './Main.jsx';
 
-export default class LeftPanel extends Component {
+import About from '../pages/About.jsx';
+import Help from '../pages/Help.jsx';
+import Signin from '../pages/Signin.jsx';
+import RequestForm from '../pages/RequestForm.jsx';
+
+export default class Panel extends React.Component {
   constructor(props) {
     super(props);
 
@@ -34,12 +38,14 @@ export default class LeftPanel extends Component {
           <BorderNav navId='labs' navText='Labs' />
           <BorderNav navId='sandbox' navText='Sandbox' />
         </SideNav>
-        <div className="paddingTop10"></div>
-        <BootTable />
+        <BootTable className="paddingTop10" />
       </div>
     </div>
-  <div className="col-md-6 paddingLeft10">
-    <Main />
+  <div className="col-md-6">
+    <Route path='/about' component={About}/>
+    <Route path='/help' component={Help}/>
+    <Route path='/requestform' component={RequestForm}/>
+    <Route path='/signin' component={Signin}/>
   </div>
   <div className="col-md-3">
     <div className="Body_right_div">
@@ -48,24 +54,17 @@ export default class LeftPanel extends Component {
         <div>
           <BootTable />
         </div>
-        <div className="paddingTop10"></div>
-        <BorderNav navId='machine_1' navText='Manage Lab Machines' />
+        <BorderNav className="paddingTop10" navId='machine_1' navText='Manage Lab Machines' />
       </SideNav>
-      <div>
-        <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4' defaultSelected='startStopButton'>
-          <BorderNav navId='machineInformation' navText='Windows server 2016, NodeXL Basics, Google Chrome' />
-          <Nav>
-            <div className="row">
-              <div className="width40Percent height50Percent" align="center">
-                <button onClick={function(){}}>Start</button>
-              </div>
-              <div className="width40Percent paddingLeft10" align="left">
-                <button>Stop</button>
-              </div>
-            </div>
-          </Nav>
-        </SideNav>
-      </div>
+      <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4' defaultSelected='startStopButton'>
+        <BorderNav navId='machineInformation' navText='Windows server 2016, NodeXL Basics, Google Chrome' />
+        <Nav>
+          <div className="row">
+            <button className="width40Percent height50Percent" align="center" onClick={function(){}}>Start</button>
+            <button className="width40Percent paddingLeft10" align="left">Stop</button>
+          </div>
+        </Nav>
+      </SideNav>
     </div>
   </div>
 </div>
