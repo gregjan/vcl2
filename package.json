@@ -1,10 +1,15 @@
 {
+<<<<<<< HEAD
   "name": "vcl2.0",
+=======
+  "name": "vcl2",
+>>>>>>> remotes/origin/user_accounts
   "private": true,
   "scripts": {
     "start": "meteor run"
   },
   "dependencies": {
+<<<<<<< HEAD
     "aws-sdk": "^2.190.0",
     "@babel/runtime": "^7.0.0-beta.36",
     "axios": "^0.18.0",
@@ -12,12 +17,27 @@
     "react": "^16.2.0",
     "react-axios": "^2.0.0",
     "react-bootstrap": "^0.32.1",
+=======
+    "@babel/runtime": "^7.0.0-beta.42",
+    "babel-runtime": "^6.26.0",
+    "bcrypt": "^1.0.3",
+    "core-js": "^2.5.4",
+    "eslint-config-react-tools": "^1.2.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "history": "^4.7.2",
+    "meteor-node-stubs": "~0.2.4",
+    "normalize.css": "^8.0.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.2.0",
+    "react-addons-css-transition-group": "^15.6.2",
+>>>>>>> remotes/origin/user_accounts
     "react-bootstrap-sidebar": "0.0.1",
     "react-bootstrap-table": "^4.3.1",
     "react-dom": "^16.2.0",
     "react-icons-kit": "^1.0.7",
+    "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.14",
+    "react-scripts": "^1.1.1",
     "react-sidebar": "^2.3.2",
     "react-sidenav": "^2.1.2",
     "react-table": "^6.8.0"
