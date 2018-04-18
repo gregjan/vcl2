@@ -52,6 +52,7 @@ export default class LeftPanel extends Component {
 
 
   render() {
+    //alert(JSON.stringify(this.props.task));
     return(
 <div className="container-fluid">
   <div className="row">

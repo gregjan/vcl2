@@ -9,12 +9,12 @@ import { Session } from 'meteor/session';
 import LeftPanel from '../components/LeftPanel.jsx';
 import Menu from '../components/Menu.jsx'
 //For API calls to MongoDB
-import { Events } from '../../api/events.js';
+
 
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
 
-export default class App extends React.Component {
+ export default class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -62,11 +62,12 @@ export default class App extends React.Component {
 		return (
 		<div id="container">
 				<Menu user={user} />
-				<LeftPanel />
+				<LeftPanel task={this.props.tasks} />
 		</div>
 		);
 	}
 }
+
 
 App.propTypes = {
 	user: PropTypes.object,					// current meteor user

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {FormControl} from 'react-bootstrap';
+
 class AddMachine extends Component {
   constructor(props) {
     super(props);

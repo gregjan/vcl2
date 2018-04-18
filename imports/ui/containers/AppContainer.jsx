@@ -5,6 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 
 //import { Lists } form '../../api/lists/lists.js';
 import App from '../layouts/App.jsx'
+import { Tasks } from '../../api/events.js';
 
 export default withTracker(() => {
   //const publicHandle = Meteor.subscribe('lists.public');
@@ -14,6 +15,7 @@ export default withTracker(() => {
     //loading: !(publicHandle.ready() && privateHandle.ready()),
     connected: Meteor.status().connected,
     menuOpen: Session.get('menuOpen'),
+    tasks: Tasks.find({}).fetch(),
     /*lists: Lists.find({ $or: [
       { userId: { $exists: false } },
       { userId: Meteor.userId() },

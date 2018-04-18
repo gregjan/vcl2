@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import AddMachine from '../components/AddEvent'
-
 import { withTracker } from 'meteor/react-meteor-data';
-import { Events } from '../../api/events.js';
+import AddMachine from '../components/AddEvent';
 
 function handleClick(e){
         e.preventDefault();
         }
-
-export default class Menu extends Component {
+class Menu extends Component {
   constructor(props) {
     super(props);
     this.state = { open: false };//Object.assign(this.state, { open: false });
@@ -80,17 +77,12 @@ export default class Menu extends Component {
             </ul>
           </div>
         </nav>
-        <pre>DB Stuff: {JSON.stringify(this.props, null, ' ')} </pre>
       </div>
     )
   }
 }
 
-const MenuComponent = withTracker(() => {
-  return {
-    events: Events.find({}). fetch()
-  }
-})(Menu);
+export default Menu;
 
 Menu.propTypes = {
   user: PropTypes.object,
