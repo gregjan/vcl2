@@ -11,7 +11,7 @@ export default class BorderNav extends Component {
 
     this.state = {
       color: {
-        color: 'white'
+        color: 'black'
       }
     };
   }
