@@ -1,0 +1,11 @@
+.row {
+  margin-right: -80px;
+  margin-left: -15px;
+}
+.Body_mixin {
+  float: left;
+  color: @black;
+  background-color: @background-color;
+}
+.body_center_div { .Body_mixin; width: auto; }
+.body-side-div   { .Body_mixin; width: 300px; overflow: visible !important; }

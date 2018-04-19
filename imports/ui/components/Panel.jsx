@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SideNav, { Nav } from 'react-sidenav';
+import SideNav, { Nav }from 'react-sidenav';
 import { TableHeaderColumn } from 'react-bootstrap-table';
 import { Route } from 'react-router-dom';
 // Internally developed.
@@ -33,7 +33,7 @@ export default class Panel extends React.Component {
 <div className="container-fluid">
   <div className="row">
     <div className="col-md-3">
-      <div className="Body_left_div">
+      <div className="Body-side-div">
         <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4' defaultSelected='labs'>
           <BorderNav navId='labs' navText='Labs' />
           <BorderNav navId='sandbox' navText='Sandbox' />
@@ -48,7 +48,7 @@ export default class Panel extends React.Component {
     <Route path='/signin' component={Signin}/>
   </div>
   <div className="col-md-3">
-    <div className="Body_right_div">
+    <div className="Body-side-div">
       <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4' defaultSelected='labMachines'>
         <BorderNav navId='labMachines' navText='Labs' />
         <div>
