@@ -7,7 +7,12 @@ import { TableHeaderColumn } from 'react-bootstrap-table';
 import BaseComponent from './BaseComponent.jsx';
 import BorderNav from './BorderNav.jsx';
 import BootTable from './BootTable.jsx';
-import StartMachine from './StartMachine.jsx'
+import StartMachine from './StartMachine.jsx';
+import AWS from 'aws-sdk';
+
+AWS.config.update({region: 'us-east-1'});
+  AWS_ACCESS_KEY_ID ='',
+  AWS_SECRET_ACCESS_KEY = ''
 
 export default class LeftPanel extends Component {
   constructor(props) {
@@ -30,10 +35,47 @@ export default class LeftPanel extends Component {
   }
 
   RenderLabList(){
+    alert('calling aws api.......');
     this.setState({
       labListTable: !this.state.labListTable,
     }); 
+
+      var params = {
+          DryRun: false,
+          Filters: [
+            {
+              Name: 'tag:Name',
+              Values: [
+                'Capstone--Instructor:ebonsign',
+                /* more items */
+              ]
+            },{
+              Name: 'instance-state-name',
+              Values: [
+                'running',
+                /* more items */
+              ]
+            }
+            /* more items */
+          ]
+  
+        };
+
+        // access aws ec2 
+        ec2 = new AWS.EC2({ 
+          accessKeyId: '',
+          secretAccessKey: '',
+          apiVersion: '2016-11-15'});
+          ec2.describeInstances( params, function(err, data) {
+          if (err) {
+            console.log("Error", err.stack);
+          } else {
+            console.log("Success", JSON.stringify(data));
+            //alert(JSON.stringify(data));
+          }
+          });
   }
+
   RenderSandboxList(){
     this.setState({
       sandboxListTable: !this.state.sandboxListTable,
