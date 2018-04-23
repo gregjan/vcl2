@@ -35,23 +35,37 @@ export default class LeftPanel extends Component {
   }
 
   RenderLabList(){
-    alert('calling aws api.......');
     this.setState({
       labListTable: !this.state.labListTable,
     }); 
+  }
 
+  RenderSandboxList(){
+    this.setState({
+      sandboxListTable: !this.state.sandboxListTable,
+    }); 
+  }
+
+  RenderCreatedLabs(){
+    alert('calling aws api.......');
+    this.setState({
+      CreatedlabListTable: !this.state.CreatedlabListTable,
+    }); 
+
+     if(!this.state.CreatedlabListTable){
       var params = {
           DryRun: false,
           Filters: [
             {
-              Name: 'tag:Name',
+              Name: 'tag:username',
               Values: [
-                'Capstone--Instructor:ebonsign',
+                'skaur721',
                 /* more items */
               ]
             },{
               Name: 'instance-state-name',
               Values: [
+                'stopped',
                 'running',
                 /* more items */
               ]
@@ -63,28 +77,22 @@ export default class LeftPanel extends Component {
 
         // access aws ec2 
         ec2 = new AWS.EC2({ 
-          accessKeyId: '',
-          secretAccessKey: '',
+          accessKeyId: 'AKIAJD3SLOJD37CHTOQA',
+          secretAccessKey: '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',
           apiVersion: '2016-11-15'});
           ec2.describeInstances( params, function(err, data) {
           if (err) {
             console.log("Error", err.stack);
           } else {
-            console.log("Success", JSON.stringify(data));
+            //console.log("Success", JSON.stringify(data));
+             console.log("Machine Name:", data['Reservations'][0]['Instances'][0]['Tags'][0].Value);
+             console.log("Image ID:", data['Reservations'][0]['Instances'][0].ImageId);
+             console.log("Machine State:", data['Reservations'][0]['Instances'][0]['State'].Name);
+
             //alert(JSON.stringify(data));
           }
           });
-  }
-
-  RenderSandboxList(){
-    this.setState({
-      sandboxListTable: !this.state.sandboxListTable,
-    }); 
-  }
-  RenderCreatedLabs(){
-    this.setState({
-      CreatedlabListTable: !this.state.CreatedlabListTable,
-    }); 
+       }
   }
   RenderStartMachine(){
     this.setState({
@@ -118,13 +126,13 @@ export default class LeftPanel extends Component {
   <div className="col-md-3">
     <div className="Body_right_div">
       <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4'>
-        <BorderNav navId='labMachines' navText='User Labs' funcTion= {this.RenderCreatedLabs} />
+        <BorderNav navId='labMachines' navText='User Machines' funcTion= {this.RenderCreatedLabs} />
           {this.state.CreatedlabListTable ?
             <BootTable data={this.data}/> :
               null
           }
         <div className="paddingTop10"></div>
-        <BorderNav navId='machine_1' navText='Manage Lab Machines' funcTion= {this.RenderStartMachine}/>
+        <BorderNav navId='machine_1' navText='Manage User Machines' funcTion= {this.RenderStartMachine}/>
           {this.state.startMachine ?
             <StartMachine/> :
               null
