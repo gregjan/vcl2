@@ -34,10 +34,56 @@ export default class LeftPanel extends Component {
     }
   }
 
+
   RenderLabList(){
+    console.log('calling aws api to get lab list.......');
     this.setState({
       labListTable: !this.state.labListTable,
     }); 
+
+    if(!this.state.CreatedlabListTable){
+      var params = {
+          DryRun: false,
+          Filters: [
+            {
+              Name: 'tag:Name',
+              Values: [
+                '*Present Use: Spring 2018*',
+                /* more items */
+              ]
+            },{
+              Name: 'state',
+              Values: [
+                'available',
+                /* more items */
+              ]
+            }
+            /* more items */
+          ]
+  
+        };
+
+        // access aws ec2 
+        ec2 = new AWS.EC2({ 
+          accessKeyId: 'AKIAJD3SLOJD37CHTOQA',
+          secretAccessKey: '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',
+          apiVersion: '2016-11-15'});
+          ec2.describeImages( params, function(err, data) {
+          if (err) {
+            console.log("Error", err.stack);
+          } else {
+            //console.log( JSON.stringify(data));
+            for (i=0; i < data['Images'].length; i++){
+               console.log("Image Name:", data['Images'][i].Name);
+               console.log("Image ID:", data['Images'][i].ImageId);
+               console.log("Image State:", data['Images'][i].State);
+               console.log("Image Description:", data['Images'][i].Description);
+               console.log("..........................................");
+            }            
+            //alert(JSON.stringify(data));
+          }
+          });
+       }
   }
 
   RenderSandboxList(){
@@ -47,7 +93,7 @@ export default class LeftPanel extends Component {
   }
 
   RenderCreatedLabs(){
-    alert('calling aws api.......');
+    console.log('calling aws api to get user machines.......');
     this.setState({
       CreatedlabListTable: !this.state.CreatedlabListTable,
     }); 
@@ -85,10 +131,12 @@ export default class LeftPanel extends Component {
             console.log("Error", err.stack);
           } else {
             //console.log("Success", JSON.stringify(data));
-             console.log("Machine Name:", data['Reservations'][0]['Instances'][0]['Tags'][0].Value);
-             console.log("Image ID:", data['Reservations'][0]['Instances'][0].ImageId);
-             console.log("Machine State:", data['Reservations'][0]['Instances'][0]['State'].Name);
-
+            for(i=0; i< data['Reservations'].length ; i++){
+             console.log("Machine Name:", data['Reservations'][i]['Instances'][0]['Tags'][0].Value);
+             console.log("Image ID:", data['Reservations'][i]['Instances'][0].ImageId);
+             console.log("Machine State:", data['Reservations'][i]['Instances'][0]['State'].Name);
+             console.log("..........................................");
+            }
             //alert(JSON.stringify(data));
           }
           });
