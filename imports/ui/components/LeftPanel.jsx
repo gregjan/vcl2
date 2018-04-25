@@ -61,18 +61,18 @@ export default class LeftPanel extends Component {
             }
             /* more items */
           ]
-
         };
-
+    function doCall(params, callback){
         // access aws ec2
         ec2 = new AWS.EC2({
-          accessKeyId: 'AKIAJD3SLOJD37CHTOQA',
-          secretAccessKey: '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',
+          accessKeyId: '',
+          secretAccessKey: '',
           apiVersion: '2016-11-15'});
-          var labs={};
-          labs.data= new Array();
 
-        var result=ec2.describeImages( params, function(err, data) {
+        var labs={};
+        labs.data= new Array();
+
+          ec2.describeImages( params, function(err, data, result) {
           if (err) {
             console.log("Error", err.stack);
           } else {
@@ -83,16 +83,17 @@ export default class LeftPanel extends Component {
                });
             }
           }
-          console.log(JSON.stringify(labs));
+          result = JSON.stringify(labs);
           //return JSON.stringify(labs);
+          return callback(result);
           });
+        }
 
-
-
-        console.log(result);
+          doCall(params, function(result){
+      // Here you have access to your variable
+            console.log(result);
+          });
        }
-       //end of if condition
-       //console.log(JSON.stringify(labs));
   }
 
   RenderSandboxList(){
