@@ -25,6 +25,7 @@ export default class LeftPanel extends Component {
     this.RenderStartMachine=this.RenderStartMachine.bind(this);
     this.state = {
       data: [],
+      //labs: {},
       manageLabList: (props) => {
         axios.get('http://localhost:443/getManageLabList')
           .then((response) => {
@@ -34,12 +35,12 @@ export default class LeftPanel extends Component {
     }
   }
 
-
+//AWS sdk describe images API
   RenderLabList(){
     console.log('calling aws api to get lab list.......');
     this.setState({
       labListTable: !this.state.labListTable,
-    }); 
+    });
 
     if(!this.state.CreatedlabListTable){
       var params = {
@@ -60,43 +61,51 @@ export default class LeftPanel extends Component {
             }
             /* more items */
           ]
-  
+
         };
 
-        // access aws ec2 
-        ec2 = new AWS.EC2({ 
+        // access aws ec2
+        ec2 = new AWS.EC2({
           accessKeyId: 'AKIAJD3SLOJD37CHTOQA',
           secretAccessKey: '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',
           apiVersion: '2016-11-15'});
-          ec2.describeImages( params, function(err, data) {
+          var labs={};
+          labs.data= new Array();
+
+        var result=ec2.describeImages( params, function(err, data) {
           if (err) {
             console.log("Error", err.stack);
           } else {
             //console.log( JSON.stringify(data));
             for (i=0; i < data['Images'].length; i++){
-               console.log("Image Name:", data['Images'][i].Name);
-               console.log("Image ID:", data['Images'][i].ImageId);
-               console.log("Image State:", data['Images'][i].State);
-               console.log("Image Description:", data['Images'][i].Description);
-               console.log("..........................................");
-            }            
-            //alert(JSON.stringify(data));
+               labs.data.push({
+                 "lab_name": data['Images'][i].Name,
+               });
+            }
           }
+          console.log(JSON.stringify(labs));
+          //return JSON.stringify(labs);
           });
+
+
+
+        console.log(result);
        }
+       //end of if condition
+       //console.log(JSON.stringify(labs));
   }
 
   RenderSandboxList(){
     this.setState({
       sandboxListTable: !this.state.sandboxListTable,
-    }); 
+    });
   }
 
   RenderCreatedLabs(){
     console.log('calling aws api to get user machines.......');
     this.setState({
       CreatedlabListTable: !this.state.CreatedlabListTable,
-    }); 
+    });
 
      if(!this.state.CreatedlabListTable){
       var params = {
@@ -118,11 +127,11 @@ export default class LeftPanel extends Component {
             }
             /* more items */
           ]
-  
+
         };
 
-        // access aws ec2 
-        ec2 = new AWS.EC2({ 
+        // access aws ec2
+        ec2 = new AWS.EC2({
           accessKeyId: 'AKIAJD3SLOJD37CHTOQA',
           secretAccessKey: '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',
           apiVersion: '2016-11-15'});
@@ -145,7 +154,7 @@ export default class LeftPanel extends Component {
   RenderStartMachine(){
     this.setState({
       startMachine: !this.state.startMachine,
-    }); 
+    });
   }
 
 
