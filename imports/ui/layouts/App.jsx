@@ -1,16 +1,12 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import PropTypes from 'prop-types'; //Possibly use Typescript for this?
-//For component loading transitions: import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 
-//import ComponentName from '../components/component.jsx';
-//import TopNav from '../components/TopNav.jsx';
-import LeftPanel from '../components/LeftPanel.jsx';
-import Menu from '../components/Menu.jsx'
-//For API calls to MongoDB
-
-
+import Panel from '../components/Panel.jsx';
+import Menu from '../components/header/Menu.jsx'
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
 
@@ -18,12 +14,9 @@ const CONNECTION_ISSUE_TIMEOUT = 5000;
 	constructor(props) {
 		super(props);
 		this.state = {
-			menuOpen: false,
 		 	showConnectionIssue: false,
 		};
-		this.toggleMenu = this.toggleMenu.bind(this);
 		this.logout = this.logout.bind(this);
-
 	}
 
 	componentDidMount() {
@@ -32,18 +25,17 @@ const CONNECTION_ISSUE_TIMEOUT = 5000;
 		}, CONNECTION_ISSUE_TIMEOUT);
 	}
 
-	componentWillReceiveProps() {
+	componentWillReceiveProps({ children }) {
 		// TODO: const list = List of parsed return from aws_sdk.
 	}
 
-	toggleMenu(menuOpen = !Session.get('menuOpen')) {
-		Session.set({ menuOpen });
+	login() {
+		Meteor.loginWithCas(function(){}); //TODO: Load login page rather than popup
 	}
 
 	logout() {
 		Meteor.logout();
-
-		// remove private lists, Rerender lists to be empty. Rerender Nav (with correct button text)
+		// remove private lists, Rerender lists to be empty.
 	}
 
 	render() {
@@ -51,19 +43,16 @@ const CONNECTION_ISSUE_TIMEOUT = 5000;
 		const {
 			user,
 			connected,
-			//loading,
 			menuOpen,
+			children,
+			location,
 		} = this.props;
 
-		const closeMenu = this.toggleMenu.bind(this, false);
-			/* <div className={menuOpen ? 'menu-open' : ''} /> */
-			//<TopNav />
-
 		return (
-		<div id="container">
-				<Menu user={user} />
-				<LeftPanel task={this.props.tasks} />
-		</div>
+			<div>
+				<Menu user={user} login={this.login} logout={this.logout} />
+				<Panel task={this.props.tasks} />
+			</div>
 		);
 	}
 }
@@ -72,10 +61,8 @@ const CONNECTION_ISSUE_TIMEOUT = 5000;
 App.propTypes = {
 	user: PropTypes.object,					// current meteor user
 	connected: PropTypes.bool,			// server connection status
-//	  loading: React.PropTypes.bool, 			// subscription status
-	menuOpen: PropTypes.bool, 		// checks side menu open status
-	//  lists: React.PropTypes.array, 			// all lists visible to current user
-	 // children: React.PropTypes.element,  // matched child route component
+	menuOpen: PropTypes.bool, 		  // checks side menu open status
+	children: PropTypes.element,    // matched child route component
 };
 
 App.contextTypes = {
