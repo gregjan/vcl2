@@ -6,7 +6,7 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
-  api.versionFrom('1.6.1');
+  api.versionsFrom('1.6.1');
   api.use('ecmascript');
   api.use('accounts-ui', ['client', 'server']);
   api.use('oauth2', ['client', 'server']);
