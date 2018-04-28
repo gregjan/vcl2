@@ -3,6 +3,7 @@
 Accounts.oauth.registerService('canvas');
 
 if (Meteor.isClient) {
+  // no callback on redirect loginStyle.
   Meteor.loginWithCanvas = function(options, callback) {
     if (!callback && typeof options === "function") {
       callback = options;
