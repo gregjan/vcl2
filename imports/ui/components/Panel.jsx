@@ -7,7 +7,6 @@ import {Route} from 'react-router-dom';
 import BaseComponent from './BaseComponent.jsx';
 import BorderNav from './BorderNav.jsx';
 import BootTable from './BootTable.jsx';
-import AccountsUIWrapper from './AccountsUIWrapper.js'
 // Pages
 import About from '../pages/About.jsx';
 import Help from '../pages/Help.jsx';
@@ -66,7 +65,6 @@ export default class Panel extends React.Component {
             </SideNav>
           </div>
         </div>
-        <AccountsUIWrapper />
       </div>
     </div>);
   }
