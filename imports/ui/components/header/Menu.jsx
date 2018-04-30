@@ -1,11 +1,38 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { withTracker } from 'meteor/react-meteor-data';
+import AddMachine from '../AddEvent';
 
-export default class Menu extends Component {
+function handleClick(e){
+        e.preventDefault();
+        }
+class Menu extends Component {
   constructor(props) {
     super(props);
+    this.state = { open: false };//Object.assign(this.state, { open: false });
+    this.toggle = this.toggle.bind(this);
+
+    this.state = {
+      showComponent: false,
+      };
+
+    this.RenderAdminPage=this.RenderAdminPage.bind(this);
   }
+
+  toggle(e) {
+    e.stopPropagation();
+    this.setState({
+      open: !this.state.open,
+    });
+  }
+
+  RenderAdminPage() {
+    this.setState({
+      showComponent: !this.state.showComponent,
+    });
+  }
+
 
   render() {
     return (
@@ -26,6 +53,11 @@ export default class Menu extends Component {
                   <Link to="/signout" onClick={this.props.logout}>Logout</Link> :
                   <Link to="/signin" onClick={this.props.login}>Login</Link>}
               </li>
+              <li><a href="#" onClick={this.RenderAdminPage}>Admin</a></li>
+                  {this.state.showComponent ?
+                    <AddMachine /> :
+                     null
+                   }
             </ul>
           </div>
         </nav>
@@ -33,6 +65,8 @@ export default class Menu extends Component {
     )
   }
 }
+
+export default Menu;
 
 Menu.propTypes = {
   user: PropTypes.object,

@@ -11,14 +11,13 @@ export default class BorderNav extends Component {
 
     this.state = {
       color: {
-        color: 'black'
+        color: 'white'
       }
     };
   }
 
   render() {
     const color = this.state.color;
-
     return(
 <Nav id={this.props.navId}>
   <NavIcon><SvgIcon size={20} icon={ic_aspect_ratio} /></NavIcon>
