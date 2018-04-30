@@ -67,8 +67,8 @@ export default class Panel extends Component {
     function doCall(params, callback){
         // access aws ec2
         ec2 = new AWS.EC2({
-          accessKeyId: 'AKIAJD3SLOJD37CHTOQA',
-          secretAccessKey: '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',
+          accessKeyId: '',
+          secretAccessKey: '',
           apiVersion: '2016-11-15'});
 
         var labs={};
@@ -137,8 +137,8 @@ export default class Panel extends Component {
         };
         // access aws ec2
         ec2 = new AWS.EC2({
-          accessKeyId: 'AKIAJD3SLOJD37CHTOQA',
-          secretAccessKey: '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',
+          accessKeyId: '',
+          secretAccessKey: '',
           apiVersion: '2016-11-15'});
           ec2.describeInstances( params, function(err, data) {
           if (err) {
