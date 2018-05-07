@@ -15,11 +15,9 @@ import Help from '../pages/Help.jsx';
 import Signin from '../pages/Signin.jsx';
 import RequestForm from '../pages/RequestForm.jsx';
 import AWS from 'aws-sdk';
-
 AWS.config.update({region: 'us-east-1'});
-  AWS_ACCESS_KEY_ID ='',
-  AWS_SECRET_ACCESS_KEY = ''
-
+  //AWS_ACCESS_KEY_ID ='',
+  //AWS_SECRET_ACCESS_KEY = ''
 export default class Panel extends Component {
   constructor(props) {
     super(props);
