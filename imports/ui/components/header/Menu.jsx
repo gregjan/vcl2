@@ -1,38 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { withTracker } from 'meteor/react-meteor-data';
-import AddMachine from '../AddEvent';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
-function handleClick(e){
-        e.preventDefault();
-        }
-class Menu extends Component {
+export default class Menu extends Component {
   constructor(props) {
     super(props);
-    this.state = { open: false };//Object.assign(this.state, { open: false });
-    this.toggle = this.toggle.bind(this);
-
-    this.state = {
-      showComponent: false,
-      };
-
-    this.RenderAdminPage=this.RenderAdminPage.bind(this);
   }
-
-  toggle(e) {
-    e.stopPropagation();
-    this.setState({
-      open: !this.state.open,
-    });
-  }
-
-  RenderAdminPage() {
-    this.setState({
-      showComponent: !this.state.showComponent,
-    });
-  }
-
 
   render() {
     return (
@@ -41,23 +14,26 @@ class Menu extends Component {
           <div className="container-fluid">
             <div className="navbar-header">
               <Link to="/" className="navbar-left">
-                <img alt="UMD iSchool VCL" src="ischool.png" />
+                <img alt="UMD iSchool VCL" src="ischool.png"/>
               </Link>
             </div>
             <ul className="nav navbar-nav navbar-right">
-              <li className="test"><Link to="/about">About</Link></li>
-              <li className="test"><Link to="/help">Help</Link></li>
-              <li className="test"><Link to="/RequestForm">Request Form</Link></li>
-              <li className="test">
-                {this.props.user ?
-                  <Link to="/signout" onClick={this.props.logout}>Logout</Link> :
-                  <Link to="/signin" onClick={this.props.login}>Login</Link>}
+              <li className="link-hover">
+                <Link to="/about">About</Link>
               </li>
-              <li><a href="#" onClick={this.RenderAdminPage}>Admin</a></li>
-                  {this.state.showComponent ?
-                    <AddMachine /> :
-                     null
-                   }
+              <li className="link-hover">
+                <Link to="/help">Help</Link>
+              </li>
+              <li className="link-hover">
+                <Link to="/RequestForm">Request Form</Link>
+              </li>
+              <li className="link-hover">
+                {
+                  this.props.user
+                    ? <Link to="/signout" onClick={this.props.logout}>Logout</Link>
+                    : <Link to="/signin" onClick={this.props.login}>Login</Link>
+                }
+              </li>
             </ul>
           </div>
         </nav>
@@ -66,9 +42,7 @@ class Menu extends Component {
   }
 }
 
-export default Menu;
-
 Menu.propTypes = {
   user: PropTypes.object,
-  logout: PropTypes.func,
+  logout: PropTypes.func
 };

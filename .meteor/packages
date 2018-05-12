@@ -30,3 +30,5 @@ twbs:bootstrap
 static-html
 service-configuration
 nimble:restivus
+peerlibrary:aws-sdk
+mdg:validated-method
