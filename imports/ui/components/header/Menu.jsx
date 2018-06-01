@@ -6,7 +6,8 @@ export default class Menu extends Component {
   constructor(props) {
     super(props);
   }
-
+  
+  // TODO: Only render Request Form if user is teacher (check from Canvas).
   render() {
     return (
       <div>
@@ -18,17 +19,10 @@ export default class Menu extends Component {
               </Link>
             </div>
             <ul className="nav navbar-nav navbar-right">
-              <li className="link-hover">
-                <Link to="/about">About</Link>
-              </li>
-              <li className="link-hover">
-                <Link to="/help">Help</Link>
-              </li>
-              <li className="link-hover">
-                <Link to="/RequestForm">Request Form</Link>
-              </li>
-              <li className="link-hover">
-                {
+              <li className="link-hover"><Link to="/about">About</Link></li>
+              <li className="link-hover"><Link to="/help">Help</Link></li>
+              <li className="link-hover"><Link to="/RequestForm">Request Form</Link></li>
+              <li className="link-hover">{
                   this.props.user
                     ? <Link to="/signout" onClick={this.props.logout}>Logout</Link>
                     : <Link to="/signin" onClick={this.props.login}>Login</Link>

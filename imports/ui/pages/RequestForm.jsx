@@ -1,9 +1,8 @@
 import {Meteor} from 'meteor/meteor';
 import React from 'react';
-import { create } from '../../api/aws/methods.js';
+import { create, tag } from '../../api/aws/methods.js';
 
 /* TODO: Create less file */
-
 export default class RequestForm extends React.Component {
   constructor(props) {
     super(props);
@@ -23,8 +22,11 @@ export default class RequestForm extends React.Component {
     this.setState({ [name]: value });
   }
 
-  handleSubmit(event){ /* TODO: Finish this call */
-    create.call({ softwareList: '' }), (err) => {
+  handleSubmit(event){
+    create.call({
+      os: this.state.os,
+      softwareList: this.state.softwareList
+    }), (err) => {
       if (err) { this.redirectTo('/'); }
     }
   }
@@ -45,7 +47,8 @@ export default class RequestForm extends React.Component {
             </div>
             <div><label>Software List (Separated by comma):</label></div>
             <div>
-              <input type="text" name="softwareList" placeholder="Enter requested software"
+              <input type="text" name="softwareList"
+                placeholder="Enter requested software"
                 value={this.state.softwareList}
                 onChange={this.handleChange}
                 required="required"/>
