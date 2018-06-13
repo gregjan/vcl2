@@ -3,7 +3,7 @@ import React from 'react';
 import { create, tag } from '../../api/aws/methods.js';
 
 /* TODO: Create less file */
-export default class RequestForm extends React.Component {
+export default class RequestFormPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

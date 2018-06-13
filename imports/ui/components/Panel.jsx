@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import SideNav, { Nav } from 'react-sidenav';
 import { TableHeaderColumn } from 'react-bootstrap-table';
 import { Route } from 'react-router-dom';
-import AWS from 'aws-sdk';
+
 // Internally developed.
 import BaseComponent from './BaseComponent.jsx';
 import BorderNav from './BorderNav.jsx';
@@ -11,10 +11,10 @@ import BootTable from './BootTable.jsx';
 import BootList from './BootList.jsx';
 import './Panel.less';
 import StartMachine from './StartMachine.jsx';
-import About from '../pages/About.jsx';
-import Help from '../pages/Help.jsx';
-import Signin from '../pages/Signin.jsx';
-import RequestForm from '../pages/RequestForm.jsx';
+import About from '../pages/AboutPage.jsx';
+import Help from '../pages/HelpPage.jsx';
+import Signin from '../pages/SigninPage.jsx';
+import RequestForm from '../pages/RequestFormPage.jsx';
 AWS.config.update({region: 'us-east-1'});
 
 export default class Panel extends Component {

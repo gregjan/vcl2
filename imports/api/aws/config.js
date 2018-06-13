@@ -1,7 +1,8 @@
-import {Meteor} from 'meteor/meteor';
-import '../../../settings.json';
+import { Meteor } from 'meteor/meteor';
+import AWS from 'aws-sdk';
+
 AWS.config.update({
-  accessKeyId: AWS.accessKeyId,
-  secretAccessKey: AWS.secretAccessKey,
-  defaultRegion: AWS.defaultRegion
+  accessKeyId: Meteor.settings.AWS.accessKeyId,
+  secretAccessKey: Meteor.settings.AWS.secretAccessKey,
+  defaultRegion: Meteor.settings.AWS.defaultRegion,
 });

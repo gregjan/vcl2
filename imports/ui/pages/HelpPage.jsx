@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Help extends React.Component {
+export default class HelpPage extends React.Component {
   constructor(props) {
     super(props);
   }

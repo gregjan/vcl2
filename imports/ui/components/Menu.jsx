@@ -1,20 +1,22 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import React from 'react';
+// import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import BaseComponent from './BaseComponent.jsx';
 
-export default class Menu extends Component {
+export default class Menu extends BaseComponent {
   constructor(props) {
     super(props);
+    this.state = Object.assign(this.state, { open: false });
   }
 
-  // TODO: Only render Request Form if user is teacher (check from Canvas).
   render() {
+  // TODO: Only render Request Form if user is teacher (check from Canvas).
     return (
       <nav className="navbar navbar-default">
         <div className="container-fluid">
           <div className="navbar-header">
             <Link to="/" className="navbar-left">
-              <img alt="UMD iSchool VCL" src="ischool.png"/>
+              <img alt="UMD iSchool VCL" src="ischool.png" />
             </Link>
           </div>
           <ul className="nav navbar-nav navbar-right">
@@ -30,11 +32,6 @@ export default class Menu extends Component {
           </ul>
         </div>
       </nav>
-    )
+    );
   }
 }
-
-Menu.propTypes = {
-  user: PropTypes.object,
-  logout: PropTypes.func
-};

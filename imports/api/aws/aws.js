@@ -3,11 +3,11 @@ import { Meteor } from 'meteor/meteor';
 class aws {
 
   // TODO: Move these to Meteor Settings.
-  var DEFAULT_PARAMS = {
+  const DEFAULT_PARAMS = {
     ImageId: 'ami-XXXXXXXX',
     InstanceType: 't2.small',
     MinCount: 1,
-    MaxCount: 1
+    MaxCount: 1,
   };
 
   const API_VERSION = '2016-11-15';

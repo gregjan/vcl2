@@ -1,70 +1,159 @@
-import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import PropTypes from 'prop-types'; //Possibly use Typescript for this?
-
+import React, { Component } from 'react';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types'; // Possibly use Typescript for this?
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { Meteor } from 'meteor/meteor';
-import { Session } from 'meteor/session';
 
+// Components:
+import Menu from '../components/Menu.jsx';
+import ConnectionNotification from '../components/ConnectionNotification.jsx';
+import Loading from '../components/Loading.jsx';
 import Panel from '../components/Panel.jsx';
-import Menu from '../components/header/Menu.jsx'
+
+// Pages:
+import AboutPage from '../pages/AboutPage.jsx';
+import HelpPage from '../pages/HelpPage.jsx';
+import RequestFormPage from '../pages/RequestFormPage.jsx';
+import SigninPage from '../pages/SigninPage.jsx';
+import NotFoundPage from '../pages/NotFoundPage.jsx';
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
 
-export default class App extends React.Component {
+export default class App extends Component {
+
   constructor(props) {
-	  super(props);
-		this.state = {
-		 	showConnectionIssue: false,
-		};
-		this.logout = this.logout.bind(this);
-	}
+    super(props);
+    this.state = {
+      showConnectionIssue: false,
+      defaultList: null,
+      redirectTo: null,
+    };
+    this.toggleMenu = this.toggleMenu.bind(this);
+    this.closeMenu = this.toggleMenu.bind(this, false);
+    this.logout = this.logout.bind(this);
+  }
 
-	componentDidMount() {
-		setTimeout(() => {
-			this.setState({ showConnectionIssue: true });
-		}, CONNECTION_ISSUE_TIMEOUT);
-	}
+  static getDerivedStateFromProps(nextProps) {
+    const newState = { defaultList: null, redirectTo: null };
+    if (!nextProps.loading) {
+      newState.defaultList = '/about';
+    }
+    return newState;
+  }
 
-	componentWillReceiveProps({ children }) {
-		// TODO: const list = List of parsed return from aws_sdk.
-	}
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ showConnectionIssue: true });
+    }, CONNECTION_ISSUE_TIMEOUT);
+  }
 
-	login() {
-		Meteor.loginWithCas(function(){}); //TODO: Load login page rather than popup
-	}
+  toggleMenu() {
+    this.props.menuOpen.set(!this.props.menuOpen.get());
+  }
 
-	logout() {
-		Meteor.logout();
-		// remove private lists, Rerender lists to be empty.
-	}
+  logout() {
+    Meteor.logout();
+    this.setState({
+      redirectTo: this.state.defaultList,
+    });
+  }
 
-	render() {
-		const { showConnectionIssue } = this.state;
-		const {
-			user,
-			connected,
-			menuOpen,
-			children,
-			location,
-		} = this.props;
+  login() {
+    Meteor.loginWithCas(() => {}); // TODO: Load login page rather than popup
+  }
 
-		return (
-			<div>
-				<Menu user={user} login={this.login} logout={this.logout} />
-				<Panel task={this.props.tasks} />
-			</div>
-		);
-	}
+  renderRedirect(location) {
+    const { redirectTo, defaultList } = this.state;
+    const { pathname } = location;
+    let redirect = null;
+    if (redirectTo && redirectTo !== pathname) {
+      redirect = <Redirect to={redirectTo} />;
+    } else if (pathname === '/' && defaultList) {
+      redirect = <Redirect to={defaultList} />;
+    }
+    return redirect;
+  }
+
+  renderContent(location) {
+    const {
+      user,
+      connected,
+      menuOpen,
+      loading,
+    } = this.props;
+    const { showConnectionIssue } = this.state;
+
+    const commonChildProps = {
+      menuOpen: this.props.menuOpen,
+    };
+
+    return (
+      <div id="container" className={menuOpen ? 'menu-open' : ''}>
+        <section id="menu">
+          <Menu user={user} login={this.login} logout={this.logout} />
+        </section>
+        {showConnectionIssue && !connected
+          ? <ConnectionNotification />
+          : null}
+        <div className="content-overlay" onClick={this.closeMenu} />
+        <div id="content-container">
+          {loading ? (<Loading key="loading" />) : (
+            <TransitionGroup>
+              <CSSTransition
+                key={location.key}
+                classNames="fade"
+                timeout={200}
+              >
+                <Switch location={location}>
+                  <Route
+                    path="/about"
+                    render={() => <AboutPage {...commonChildProps} />}
+                  />
+                  <Route
+                    path="/help"
+                    render={() => <HelpPage {...commonChildProps} />}
+                  />
+                  <Route
+                    path="/RequestForm"
+                    render={() => <RequestFormPage {...commonChildProps} />}
+                  />
+                  <Route
+                    path="/signin"
+                    render={() => <SigninPage {...commonChildProps} />}
+                  />
+                  <Route
+                    path="/*"
+                    render={() => <Panel {...commonChildProps} />}
+                  />
+                </Switch>
+              </CSSTransition>
+            </TransitionGroup>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <BrowserRouter>
+        <Route
+          render={({ location }) => (
+            this.renderRedirect(location) || this.renderContent(location)
+          )}
+        />
+      </BrowserRouter>
+    );
+  }
 }
 
-
 App.propTypes = {
-	user: PropTypes.object,					// current meteor user
-	connected: PropTypes.bool,			// server connection status
-	menuOpen: PropTypes.bool, 		  // checks side menu open status
-	children: PropTypes.element,    // matched child route component
+  user: PropTypes.object,
+  connected: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
+  menuOpen: PropTypes.object.isRequired,
 };
 
-App.contextTypes = {
-	router: PropTypes.object,
+App.defaultProps = {
+  user: null,
 };
