@@ -26,9 +26,9 @@ export default class BootList extends Component {
     const options = this.state.options;
 
     return(
-<BootstrapTable data={this.props.data} hover={true} keyField='lab_name' options={options}>
-  <TableHeaderColumn datafield="template_name">Template Name</TableHeaderColumn>
-</BootstrapTable>
+      <BootstrapTable data={this.props.data} hover={true} keyField='lab_name' options={options}>
+      <TableHeaderColumn datafield="template_name">Template Name</TableHeaderColumn>
+      </BootstrapTable>
     )
   }
 }

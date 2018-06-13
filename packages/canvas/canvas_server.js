@@ -9,7 +9,6 @@ Canvas.requestCredential = (credentialToken, credentialSecret) => {
 Canvas.whitelistedFields = ['id', 'email', 'reputation', 'created'];
 
 OAuth.registerService('canvas', 2, null, function(query) {
-
   const config = ServiceConfiguration.configurations.findOne({
     service: 'canvas'
   });
@@ -45,7 +44,6 @@ OAuth.registerService('canvas', 2, null, function(query) {
 
 const getTokens = function(config, query) {
   const endpoint = 'https://umd.test.instructure.com/login/oauth2/token';
-
   let response;
   try {
     response = HTTP.post(

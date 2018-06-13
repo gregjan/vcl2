@@ -11,7 +11,7 @@ import SimpleSchema from 'simpl-schema';
  * then 'publish' template to make available as student machine.
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
- // Use when creating new machines on AWS.
+// Use when creating new machines on AWS.
 export const create = new ValidatedMethod({
   name: 'aws.create',
   validate: new SimpleSchema({

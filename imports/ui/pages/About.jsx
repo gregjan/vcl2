@@ -7,7 +7,7 @@ export default class About extends React.Component {
 
   render () {
     return(
-        <iframe src="http://dcicblog.umd.edu/curatecloud/2016/03/09/curatecloud/"></iframe>
+      <iframe src="http://dcicblog.umd.edu/curatecloud/2016/03/09/curatecloud/"></iframe>
     );
   }
 }

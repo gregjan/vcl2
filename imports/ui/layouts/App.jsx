@@ -10,9 +10,9 @@ import Menu from '../components/header/Menu.jsx'
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
 
- export default class App extends React.Component {
-	constructor(props) {
-		super(props);
+export default class App extends React.Component {
+  constructor(props) {
+	  super(props);
 		this.state = {
 		 	showConnectionIssue: false,
 		};

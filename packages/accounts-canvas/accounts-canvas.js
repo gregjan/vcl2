@@ -20,12 +20,14 @@ if (Meteor.isClient) {
       Canvas.whitelistedFields.concat(['accessToken', 'expiresAt']),
         function(subfield) {
           return 'services.canvas.' + subfield;
-      }),
+        }
+    ),
 
     forOtherUsers: _.map(
       _.without(Canvas.whitelistedFields, 'email', 'verified_email'),
         function(subfield) {
           return 'services.canvas.' + subfield;
-        })
-    });
+        }
+    )
+  });
 }
