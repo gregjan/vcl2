@@ -20,8 +20,8 @@ export default class BorderNav extends Component {
     const color = this.state.color;
     return(
       <Nav id={this.props.navId}>
-      <NavIcon><SvgIcon size={20} icon={ic_aspect_ratio} /></NavIcon>
-      <NavText><a href="#" style={this.state.color} onClick={this.props.funcTion}>{this.props.navText}</a></NavText>
+        <NavIcon><SvgIcon size={20} icon={ic_aspect_ratio} /></NavIcon>
+        <NavText><a href="#" style={this.state.color} onClick={this.props.funcTion}>{this.props.navText}</a></NavText>
       </Nav>
     )
   }

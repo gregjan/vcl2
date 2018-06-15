@@ -33,29 +33,23 @@ export default class RequestFormPage extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="jumbotron jumbotron-fluid" style={{margin: "0 500px"}}>
-          <form onSubmit={this.handleSubmit}>
-            <div><label>Operating System:</label></div>
-            <div>
-              <select name="os" required="required"
-                selected={this.state.os}
-                onChange={this.handleChange}>
-                  <option value="Ubuntu">Ubuntu</option>
-                  <option value="Windows">Windows</option>
-              </select>
-            </div>
-            <div><label>Software List (Separated by comma):</label></div>
-            <div>
-              <input type="text" name="softwareList"
-                placeholder="Enter requested software"
-                value={this.state.softwareList}
-                onChange={this.handleChange}
-                required="required"/>
-            </div>
-            <button type="submit" className="btn btn-primary">Add Machine</button>
-          </form>
-        </div>
+      <div className="jumbotron jumbotron-fluid" style={{margin: "0 500px"}}>
+        <form onSubmit={this.handleSubmit}>
+          <div><label>Operating System:</label></div>
+          <select name="os" required="required"
+            selected={this.state.os}
+            onChange={this.handleChange}>
+            <option value="Ubuntu">Ubuntu</option>
+            <option value="Windows">Windows</option>
+          </select>
+          <div><label>Software List (Separated by comma):</label></div>
+          <input type="text" name="softwareList"
+            placeholder="Enter requested software"
+            value={this.state.softwareList}
+            onChange={this.handleChange}
+            required="required"/>
+          <button type="submit" className="btn btn-primary">Add Machine</button>
+        </form>
       </div>
     );
   };

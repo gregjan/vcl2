@@ -27,7 +27,7 @@ export default class BootList extends Component {
 
     return(
       <BootstrapTable data={this.props.data} hover={true} keyField='lab_name' options={options}>
-      <TableHeaderColumn datafield="template_name">Template Name</TableHeaderColumn>
+        <TableHeaderColumn datafield="template_name">Template Name</TableHeaderColumn>
       </BootstrapTable>
     )
   }

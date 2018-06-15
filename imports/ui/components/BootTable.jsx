@@ -27,8 +27,8 @@ export default class BootTable extends Component {
 
     return(
       <BootstrapTable data={this.props.data} hover={true} keyField='lab_name' options={options}>
-      <TableHeaderColumn datafield="lab_name">Lab Name</TableHeaderColumn>
-      <TableHeaderColumn dataField="instructor">Instructor</TableHeaderColumn>
+        <TableHeaderColumn datafield="lab_name">Lab Name</TableHeaderColumn>
+        <TableHeaderColumn dataField="instructor">Instructor</TableHeaderColumn>
       </BootstrapTable>
     )
   }
