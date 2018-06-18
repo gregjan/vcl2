@@ -1,2 +1,1 @@
-import '/imports/startup/server';
-//import '/imports/api/events.js';
+import '../imports/startup/server';

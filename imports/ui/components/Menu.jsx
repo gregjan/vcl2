@@ -15,7 +15,7 @@ export default class Menu extends BaseComponent {
       <nav className="navbar navbar-default">
         <div className="container-fluid">
           <div className="navbar-header">
-            <Link to="/" className="navbar-left">
+            <Link to="/panel" className="navbar-left">
               <img alt="UMD iSchool VCL" src="ischool.png" />
             </Link>
           </div>
