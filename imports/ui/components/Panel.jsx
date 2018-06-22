@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-
 import SideNav from 'react-sidenav';
-import { Route } from 'react-router-dom';
-import { AWS } from 'aws-sdk';
 
 // Internally developed.
 import BorderNav from './BorderNav.jsx';
@@ -22,13 +19,13 @@ export default class Panel extends Component {
       startMachine: false,
     };
     this.getLabList = this.getLabList.bind(this);
+    this.sendList = this.sendList.bind(this);
     this.RenderLabList = this.RenderLabList.bind(this);
     this.RenderSandboxList = this.RenderSandboxList.bind(this);
     this.RenderTemplateList = this.RenderTemplateList.bind(this);
     this.RenderCreatedLabs = this.RenderCreatedLabs.bind(this);
     this.RenderStartMachine = this.RenderStartMachine.bind(this);
   }
-
   getLabList() {
     const params = {
       DryRun: false,
@@ -68,7 +65,16 @@ export default class Panel extends Component {
       },
     );
   }
-
+  sendList(list) {
+    const labs = {};
+    labs.data = [];
+    for (let i = 0; i < list.Images.length; i += 1) {
+      labs.data.push({
+        lab_name: list.Images[i].Name,
+      });
+      console.log(labs.data); // the value is accessible because it is a local variable.
+    }
+  }
   RenderLabList() {
     this.setState({
       labListTable: !this.state.labListTable,
@@ -78,13 +84,11 @@ export default class Panel extends Component {
       this.getLabList();
     }
   }
-
   RenderSandboxList() {
     this.setState({
       sandboxListTable: !this.state.sandboxListTable,
     });
   }
-
   RenderTemplateList() {
     this.setState({
       TemplateListTable: !this.state.TemplateListTable,
@@ -130,7 +134,6 @@ export default class Panel extends Component {
       });
     }
   }
-
   RenderCreatedLabs() {
     this.setState({
       CreatedlabListTable: !this.state.CreatedlabListTable,
@@ -172,7 +175,6 @@ export default class Panel extends Component {
       });
     }
   }
-
   RenderStartMachine() {
     this.setState({
       startMachine: !this.state.startMachine,
@@ -186,19 +188,19 @@ export default class Panel extends Component {
           <div className="col-md-3">
             <div className="Body_side_div">
               <SideNav highlightColor="#FFFFFF" highlightBgColor="#00bcd4">
-                <BorderNav navId="labs" navText="Class Labs" funcTion={this.RenderLabList} />
+                <BorderNav navId="labs" navText="Class Labs" funct={this.RenderLabList} />
                 {
                   this.state.labListTable ?
                     <BootTable data={this.data} /> :
                   null
                 }
-                <BorderNav navId="sandbox" navText="Sandbox" funcTion={this.RenderSandboxList} />
+                <BorderNav navId="sandbox" navText="Sandbox" funct={this.RenderSandboxList} />
                 {
                   this.state.sandboxListTable ?
                     <BootTable data={this.data} /> :
                   null
                 }
-                <BorderNav navId="templates" navText="Templates" funcTion={this.RenderTemplateList} />
+                <BorderNav navId="templates" navText="Templates" funct={this.RenderTemplateList} />
                 {
                   this.state.TemplateListTable ?
                     <BootList data={this.data} /> :

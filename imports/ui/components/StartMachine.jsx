@@ -1,31 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-// All from react-sidenav
-import SideNav, { Nav, NavIcon, NavText } from 'react-sidenav';
-import SvgIcon from 'react-icons-kit';
-import { ic_aspect_ratio } from 'react-icons-kit/md/ic_aspect_ratio';
-//import BorderNav from './BorderNav.jsx';
-function handleClick(e){
-  e.preventDefault();
-}
+import SideNav, { Nav, NavText } from 'react-sidenav';
 
-export default class StartMachine extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      color: {
-        color: 'white'
-      }
-    };
-  }
-
+export default class StartMachine {
   render() {
-    const color = this.state.color;
-
     return (
-      <SideNav highlightColor='#FFFFFF' highlightBgColor='#00bcd4' defaultSelected='startStopButton'>
-        <Nav id='machineInformation'>
+      <SideNav highlightColor="#FFFFFF" highlightBgColor="#00bcd4" defaultSelected="startStopButton">
+        <Nav id="machineInformation">
           <NavText>Windows server 2016, NodeXL Basics, Google Chrome</NavText>
         </Nav>
         <div className="row">
@@ -33,6 +14,6 @@ export default class StartMachine extends Component {
           <div className="col-md-6 next text-left"><button className="btn btn-primary">Stop</button></div>
         </div>
       </SideNav>
-    )
+    );
   }
 }

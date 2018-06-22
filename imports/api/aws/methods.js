@@ -1,7 +1,5 @@
-import { Meteor } from 'meteor/meteor';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * /
  * Methods available for calls in client to server side.
@@ -15,11 +13,11 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 export const create = new ValidatedMethod({
   name: 'aws.create',
   validate: new SimpleSchema({
-    os:           { type: String },
+    os: { type: String },
     softwareList: { type: String },
   }).validator(),
-  run({}, os, softwareList) {
-    return aws.create({}, os, softwareList );
+  run({ os, softwareList }) {
+    // create instance
   },
 });
 
@@ -30,10 +28,10 @@ export const tag = new ValidatedMethod({
   validate: new SimpleSchema({
 
   }).validator(),
-  run({ }) {
+  run() {
     return aws.tag({});
-  }
-})
+  },
+});
 
 // Retrieves instance info for View.
 export const getInstances = new ValidatedMethod({
@@ -41,5 +39,5 @@ export const getInstances = new ValidatedMethod({
   validate: new SimpleSchema({
 
   }).validator(),
-  run({}){},
+  run() {},
 });
