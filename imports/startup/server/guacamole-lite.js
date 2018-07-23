@@ -5,13 +5,18 @@ const websocketOptions = {
 };
 
 const guacdOptions = {
+  host: 'guacd',
   port: 4822,
 };
 
 const clientOptions = {
   crypt: {
     cypher: 'AES-256-CBC',
-    key: 'MoveThisToMeteor.Settings',
+    key: 'MoveThisKey',
+  },
+
+  log: {
+    level: 'DEBUG',
   },
 
   connectionDefaultSettings: {
@@ -24,4 +29,4 @@ const clientOptions = {
   },
 };
 
-const guacServer = new GuacamoleLite(websocketOptions, guacdOptions, clientOptions);
+export const guacServer = new GuacamoleLite(websocketOptions, guacdOptions, clientOptions);

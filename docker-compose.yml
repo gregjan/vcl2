@@ -1,11 +1,15 @@
 version: '3'
 services:
   VCL:
-    image: INFO/VCL
+    image: info/vcl
     ports:
       - "80:3000"
+      - "8080:8080"
+    links:
+      - guacd
     environment:
-      - ROOT_URL=https://vcl.ischool.umd.edu
+      - ROOT_URL=http://localhost
+      - METEOR_SETTINGS
 
   guacd:
     image: guacamole/guacd

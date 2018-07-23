@@ -6,7 +6,7 @@ export default class HelpPage extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <iframe src="http://dcic.umd.edu/vcl-tutorial/" />
     );
   }

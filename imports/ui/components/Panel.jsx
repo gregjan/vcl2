@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import SideNav from 'react-sidenav';
 
 // Internally developed.
-import BorderNav from './BorderNav.jsx';
-import BootTable from './BootTable.jsx';
-import BootList from './BootList.jsx';
-import './Panel.less';
-import StartMachine from './StartMachine.jsx';
+// import BorderNav from './BorderNav.jsx';
+// import BootTable from './BootTable.jsx';
+// import BootList from './BootList.jsx';
+// import './Panel.less';
+// import StartMachine from './StartMachine.jsx';
 
 export default class Panel extends Component {
   constructor(props) {

@@ -54,3 +54,4 @@ random@1.1.0
 twbs:bootstrap
 service-configuration@1.0.11
 peerlibrary:aws-sdk
+jquery
