@@ -5,7 +5,7 @@ import crypto from 'crypto';
 const clientOptions = {
   crypt: {
     cypher: 'AES-256-CBC',
-    key: 'MoveThis',
+    key: 'MySuperSecretKeyForParamsToken12',
   },
 
   log: {

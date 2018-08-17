@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.46",
-    "aws-sdk": "^2.252.1",
+    "aws-sdk": "^2.294.0",
     "bcrypt": "^1.0.3",
     "chai": "^4.1.2",
     "core-js": "^2.5.6",

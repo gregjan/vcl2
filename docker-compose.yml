@@ -1,18 +1,20 @@
 version: '3'
 services:
-  VCL:
-    image: info/vcl
-    ports:
-      - "80:3000"
-      - "8080:8080"
-    links:
-      - guacd
-    environment:
-      - ROOT_URL=http://localhost
-      - METEOR_SETTINGS
+#  VCL:
+#    image: info/vcl
+#    ports:
+#      - "80:3000"
+#      - "8080:8080"
+#    links:
+#      - guacd
+#    environment:
+#      - ROOT_URL=http://localhost
+#      - METEOR_SETTINGS
 
   guacd:
     image: guacamole/guacd
     deploy:
       restart_policy:
         condition: on-failure
+    ports:
+      - 4822:4822
